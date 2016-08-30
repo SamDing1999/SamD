@@ -9,8 +9,8 @@
 public class DoMath {
 
 	public static void main(String[] args) {
-		double result;
-		result = Calculate.square(6.0);
+		double a;
+		a = Calculate.square(6.0);
 	}
 
 }
