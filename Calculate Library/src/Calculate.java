@@ -34,18 +34,17 @@ public class Calculate {
 	
 	public static double toDegrees(double a){
 		double answer;
-		answer = ()
-		
+		double pi = 3.14159;
+		answer = (180*a)/pi;
+		return answer;
 	}
 	
+	public static double toRadians(double a){
+		double answer;
+		double pi = 3.14159;
+		answer = (a*pi)/180;
+		return answer;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

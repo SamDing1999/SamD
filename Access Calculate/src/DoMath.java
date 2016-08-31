@@ -10,7 +10,8 @@ public class DoMath {
 
 	public static void main(String[] args) {
 		double a;
-		a = Calculate.square(6.0);
+		a = Calculate.square(9);
+		System.out.println(a);
 	}
 
 }
