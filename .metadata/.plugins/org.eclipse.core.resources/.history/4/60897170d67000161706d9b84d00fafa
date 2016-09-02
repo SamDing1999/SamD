@@ -65,11 +65,7 @@ public class Calculate {
 		return e;
 	}
 	
-	public static int foil(int d, int e, int f, int g){
-		int a = d*f;
-		int b = (d*g)+(e*f);
-		int c = e*g;
-		System.out.println(a + "n^2 "+ 4 + "n " + c); 
-		return a&b;
-	}
+	/*public static int foil(int a, int b, int c, int d){
+		
+	}*/
 }

@@ -52,24 +52,12 @@ public class Calculate {
 		return answer;
 	}
 	
-	public static int toImroperFrac(int a, int b, int c){
-		int numerator = (a*c)+b;
+	public static double toImroperFrac(double a, double b, double c){
+		double numerator;
+		numerator = (a*c)+b;
 		System.out.println(numerator + "/" + c);
 		return numerator;
 	}
 	
-	public static int toMixedNum(int a,int b){
-		int d = a % b;
-		int e = (a - d)/b;
-		System.out.println(e + "_" + d + "/" + e);
-		return e;
-	}
 	
-	public static int foil(int d, int e, int f, int g){
-		int a = d*f;
-		int b = (d*g)+(e*f);
-		int c = e*g;
-		System.out.println(a + "n^2 "+ 4 + "n " + c); 
-		return a&b;
-	}
 }

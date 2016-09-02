@@ -9,11 +9,9 @@
 public class DoMath {
 
 	public static void main(String[] args) {
-		
-		
-		double b; 
-		b = Calculate.foil(2,3,6,-7);
-		System.out.println(b);
-	
+		double a;
+		a = Calculate.square(9);
+		System.out.println(a);
 	}
+
 }

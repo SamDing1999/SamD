@@ -12,7 +12,7 @@ public class DoMath {
 		
 		
 		double b; 
-		b = Calculate.foil(2,3,6,-7);
+		b = Calculate.toMixedNum(7, 2);
 		System.out.println(b);
 	
 	}
