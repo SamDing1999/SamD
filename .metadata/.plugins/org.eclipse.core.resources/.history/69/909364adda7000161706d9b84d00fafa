@@ -69,42 +69,7 @@ public class Calculate {
 		int a = d*f;
 		int b = (d*g)+(e*f);
 		int c = e*g;
-		System.out.println(a + " + n^2 "+ 4 + "n " + c); 
+		System.out.println(a + "n^2 "+ 4 + "n " + c); 
 		return a&b;
-	}
-	
-	public static int isDivisibleBy(int a, int b){
-		if(a%b==0){
-			System.out.println("a is divisible by b.");
-		}else if(b%a==0){
-			System.out.println("b is divisible by a.");
-		}else{
-			System.out.println("Neither a nor b is divisible by each other.");
-		}
-		return;
-	}
-	
-	public static double absValue(double a){
-		double answer;
-		answer = Math.abs(a);
-		return answer;
-	}
-	
-	public static int max(int a,int b){
-		int c = Math.max(a, b);
-		return c;
-	}
-	
-	public static int max(double a, double b, double c){
-		double d = 
-	}
-	
-	public static int min(int a, int b){
-		double c = Math.min(a, b);
-		return c;
-	}
-	
-	public static double round2(double a){
-		
 	}
 }
