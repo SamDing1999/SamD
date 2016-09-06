@@ -64,19 +64,24 @@ public class Calculate {
 		return answer;
 	}
 	
-	public static String foil(int a, int b, int c, int d){
-		String answer;
-		answer = ((a*b)+"n^2"+((a*d)+(b*c))+"n"+b*d);
-		return answer;
+	public static int foil(int d, int e, int f, int g){
+		int a = d*f;
+		int b = (d*g)+(e*f);
+		int c = e*g;
+		System.out.println(a + " + n^2 "+ 4 + "n " + c); 
+		return a&b;
 	}
 	
-	public static boolean isDivisibleBy(int a, int b){
+	/*public static int isDivisibleBy(int a, int b){
 		if(a%b==0){
-			return true;
+			System.out.println("a is divisible by b.");
+		}else if(b%a==0){
+			System.out.println("b is divisible by a.");
 		}else{
-			return false;
+			System.out.println("Neither a nor b is divisible by each other.");
 		}
-	}
+		return;
+	}*/
 	
 	public static double absValue(double a){
 		double answer = 0;
