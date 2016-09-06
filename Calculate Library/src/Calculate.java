@@ -134,3 +134,53 @@ public class Calculate {
 		return answer;
 	}
 }
+//pasted code is below here
+
+
+@@ -62,7 +62,7 @@ public class Calculate {
+    int num;
+    num = a%b;
+    int whole = (a - num)/b;
+    return();
+    return whole;
+}
+
+public static int foil(int d, int e, int f, int g){
+@@ -73,16 +73,17 @@ public class Calculate {
+    return a&b;
+}
+
+public static int isDivisibleBy(int a, int b){
+/*public static String isDivisibleBy(int a, int b){
+    String answer;
+    if(a%b==0){
+        return true;
+        answer = System.out.println("a is divisble by b.");
+    }else if(b%a==0){
+        return false;
+        System.out.println("b is divisble by a.");
+    }else{
+        System.out.println("Neither a nor b is divisible by each other.");
+    }
+    return;
+}
+}*/
+
+public static double absValue(double a){
+    double answer;
+@@ -127,8 +128,11 @@ public class Calculate {
+}
+
+public static double round2(double a){
+    double answer = 0.00;
+    if(a != answer){
+
+}
+    double answer;
+    double b = 100*a;
+    int c =(int)b/100;
+    answer = c;
+    return answer;
+    
+}     
+}
