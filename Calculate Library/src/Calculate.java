@@ -52,37 +52,31 @@ public class Calculate {
 		return answer;
 	}
 	
-	public static int toImroperFrac(int a, int b, int c){
-		int numerator = (a*c)+b;
-		System.out.println(numerator + "/" + c);
-		return numerator;
+	public static String toImroperFrac(int a, int b, int c){
+		String answer;
+		answer = ((a*c)+b+"/"+c);
+		return answer;
 	}
 	
-	public static int toMixedNum(int a,int b){
-		int d = a % b;
-		int e = (a - d)/b;
-		System.out.println(e + "_" + d + "/" + e);
-		return e;
+	public static String toMixedNum(int a,int b){
+		String answer;
+		answer = ((a-(a%b))/b+"_"+(a%b)+"/"+b);
+		return answer;
 	}
 	
-	public static int foil(int d, int e, int f, int g){
-		int a = d*f;
-		int b = (d*g)+(e*f);
-		int c = e*g;
-		System.out.println(a + " + n^2 "+ 4 + "n " + c); 
-		return a&b;
+	public static String foil(int a, int b, int c, int d){
+		String answer;
+		answer = ((a*b)+"n^2"+((a*d)+(b*c))+"n"+b*d);
+		return answer;
 	}
 	
-	/*public static int isDivisibleBy(int a, int b){
+	public static boolean isDivisibleBy(int a, int b){
 		if(a%b==0){
-			System.out.println("a is divisible by b.");
-		}else if(b%a==0){
-			System.out.println("b is divisible by a.");
+			return true;
 		}else{
-			System.out.println("Neither a nor b is divisible by each other.");
+			return false;
 		}
-		return;
-	}*/
+	}
 	
 	public static double absValue(double a){
 		double answer = 0;
@@ -128,9 +122,8 @@ public class Calculate {
 	
 	public static double round2(double a){
 		double answer;
-		double b = a * 100;
-		double c = b - b%a;
-		answer = c/100;
+		double b = (int)(a*100);
+		answer = b/100;
 		return answer;
 	}
 }

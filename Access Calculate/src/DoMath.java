@@ -11,9 +11,9 @@ public class DoMath {
 	public static void main(String[] args) {
 		
 		
-		double b; 
-		b = Calculate.foil(2,3,6,-7);
-		System.out.println(b);
+		/*String answer;
+		answer = Calculate.foil(2, 3, 4, -7);
+		return answer;*/
 	
 		
 		double c;
