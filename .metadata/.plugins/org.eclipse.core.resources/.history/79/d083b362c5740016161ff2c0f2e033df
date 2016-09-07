@@ -12,7 +12,7 @@ public class DoMath {
 		
 		
 		double a;
-		a = Calculate.factorial(5);
+		a = Calculate.exponent(2, 3);
 		System.out.println(a);
 	}	
 }

@@ -137,8 +137,8 @@ public class Calculate {
 	
 	public static int factorial(int a){
 		int answer = 1;
-		for(int i = 1;i <= a;i++){
-			answer *= i;
+		for(int i = a;i >= 1;a--){
+			answer *= a;
 		}
 		return answer;
 	}

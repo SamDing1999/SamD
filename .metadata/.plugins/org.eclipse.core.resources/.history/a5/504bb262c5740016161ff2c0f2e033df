@@ -134,12 +134,4 @@ public class Calculate {
 		}
 		return answer;
 	}
-	
-	public static int factorial(int a){
-		int answer = 1;
-		for(int i = 1;i <= a;i++){
-			answer *= i;
-		}
-		return answer;
-	}
 }
