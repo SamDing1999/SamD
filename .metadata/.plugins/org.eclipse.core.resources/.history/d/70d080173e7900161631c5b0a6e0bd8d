@@ -151,13 +151,13 @@ public class Calculate {
 		while(b!=0){
 			int c = a;
 			a = b;
-			b = c%b;
+			b = c;
 			}
 		return (int)Calculate.absValue(a);
 	}
 	
-	public static double sqrt(double a){
+	/*public static double sqrt(double a){
 		
 		
-	}
+	}*/
 }

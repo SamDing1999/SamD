@@ -156,8 +156,8 @@ public class Calculate {
 		return (int)Calculate.absValue(a);
 	}
 	
-	public static double sqrt(double a){
+	/*public static double sqrt(double a){
 		
 		
-	}
+	}*/
 }

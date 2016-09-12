@@ -143,21 +143,29 @@ public class Calculate {
 		return answer;
 	}
 	
-	/*public static boolean isPrime(int a){
-		int b = a;
-	*/
+	public static boolean isPrime(int a){
+		if(a < 2){
+			return false;
+		}
+		Calculate.isDivisibleBy(2, 2);
+		if(a%2==0){
+			return false;
+		}
+		for(int i = 3; i*i<=a; i += 2 ){
+			if(a%i==0){
+				return false; 
+			}else{
+				return true;
+			}
+		}
+	}
 	
 	public static int gcf(int a, int b){
 		while(b!=0){
-			int c = a;
-			a = b;
-			b = c%b;
+			int c = a;
+			a = b;
+			b = c%b;
 			}
-		return (int)Calculate.absValue(a);
-	}
-	
-	public static double sqrt(double a){
-		
-		
+		return Math.abs(a);
 	}
 }

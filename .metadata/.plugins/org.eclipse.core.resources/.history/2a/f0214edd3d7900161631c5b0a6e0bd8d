@@ -12,7 +12,7 @@ public class DoMath {
 		
 		
 		double a;
-		a = Calculate.gcf(8, 4);
+		a = Calculate.factorial(5);
 		System.out.println(a);
 	}	
 }
