@@ -142,10 +142,4 @@ public class Calculate {
 		}
 		return answer;
 	}
-	
-	public static boolean isPrime(int a){
-		Calculate.isDivisibleBy(a, 2);
-		
-		
-	}
 }
