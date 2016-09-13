@@ -52,7 +52,7 @@ public class Calculate {
 		return answer;
 	}
 	
-	public static String toImroperFrac(int a, int b, int c){
+	public static String toImproperFrac(int a, int b, int c){
 		String answer;
 		answer = ((a*c)+b+"/"+c);
 		return answer;
@@ -165,6 +165,30 @@ public class Calculate {
 	}
 	
 	public static double sqrt(double a){
+		double t; 
+		double squareRoot = a / 2;
+		do {
+			t = squareRoot;
+			squareRoot = (t + (a / t)) / 2;
+		} while ((t - squareRoot) != 0);
+	 
+		return squareRoot;
+		
+	}
+	
+	public static String quadForm(int a, int b, int c){
+		String answer;
+		double x1 = (-b+Calculate.discriminant(a, b, c)/(2*a));
+		double x2 = (-b-Calculate.discriminant(a, b, c)/(2*a));
+		if(Calculate.discriminant(a, b, c) == 0){
+			Calculate.round2(x1);
+			answer = String.valueOf(x1);
+		}else if(Calculate.discriminant(a, b, c) < 0){
+			answer = "no real roots";
+		}else{
+			
+		}
+		
 		
 		
 	}
