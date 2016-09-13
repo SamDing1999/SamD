@@ -66,7 +66,7 @@ public class Calculate {
 	
 	public static String foil(int a, int b, int c, int d){
 		String answer;
-		answer = ((a*b)+"n^2"+((a*d)+(b*c))+"n"+b*d);
+		answer = ((a*c)+"n^2"+((a*d)+(b*c))+"n"+b*d);
 		return answer;
 	}
 	
@@ -143,9 +143,17 @@ public class Calculate {
 		return answer;
 	}
 	
-	/*public static boolean isPrime(int a){
-		int b = a;
-	*/
+	public static boolean isPrime(int a){
+		boolean check;
+		for(int i = a-1; i>1;i--){
+			check = Calculate.isDivisibleBy(a, i);
+			if(check == true){
+				return false;
+				}
+			}
+		return true;
+		}
+	
 	
 	public static int gcf(int a, int b){
 		while(b!=0){
