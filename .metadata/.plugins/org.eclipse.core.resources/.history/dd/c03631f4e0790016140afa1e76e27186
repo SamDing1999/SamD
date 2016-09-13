@@ -183,16 +183,15 @@ public class Calculate {
 		double x3;
 		double x4;
 		if(Calculate.discriminant(a, b, c) == 0){
-			x1 = (-b+Calculate.sqrt(Calculate.discriminant(a, b, c))/(2*a));
+			x1 =  (-b+Calculate.discriminant(a, b, c)/(2*a));
 			x3 = Calculate.round2(x1);
 			answer = String.valueOf(x3);
 		}else if(Calculate.discriminant(a, b, c) < 0){
 			answer = "no real roots";
 		}else{
-			x2 = (-b-Calculate.sqrt(Calculate.discriminant(a, b, c))/(2*a));
+			x2 = (-b-Calculate.discriminant(a, b, c)/(2*a));
 			x4 = Calculate.round2(x2);
-			x1 = (-b+Calculate.sqrt(Calculate.discriminant(a, b, c))/(2*a));
-			x3 = Calculate.round2(x1);
+			x3 = Calculate.round2((-b+Calculate.discriminant(a, b, c)/(2*a)));
 			answer = String.valueOf(x3) + " and " + String.valueOf(x4);
 		}
 		return answer;

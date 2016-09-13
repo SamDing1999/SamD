@@ -52,7 +52,7 @@ public class Calculate {
 		return answer;
 	}
 	
-	public static String toImroperFrac(int a, int b, int c){
+	public static String toImproperFrac(int a, int b, int c){
 		String answer;
 		answer = ((a*c)+b+"/"+c);
 		return answer;
@@ -64,24 +64,19 @@ public class Calculate {
 		return answer;
 	}
 	
-	public static int foil(int d, int e, int f, int g){
-		int a = d*f;
-		int b = (d*g)+(e*f);
-		int c = e*g;
-		System.out.println(a + " + n^2 "+ 4 + "n " + c); 
-		return a&b;
+	public static String foil(int a, int b, int c, int d){
+		String answer;
+		answer = ((a*c)+"n^2"+((a*d)+(b*c))+"n"+b*d);
+		return answer;
 	}
 	
-	/*public static int isDivisibleBy(int a, int b){
+	public static boolean isDivisibleBy(int a, int b){
 		if(a%b==0){
-			System.out.println("a is divisible by b.");
-		}else if(b%a==0){
-			System.out.println("b is divisible by a.");
+			return true;
 		}else{
-			System.out.println("Neither a nor b is divisible by each other.");
+			return false;
 		}
-		return;
-	}*/
+	}
 	
 	public static double absValue(double a){
 		double answer = 0;
@@ -130,5 +125,71 @@ public class Calculate {
 		double b = (int)(a*100);
 		answer = b/100;
 		return answer;
+	}
+	
+	public static double exponent(double a, int b){
+		double answer = 1;
+		for(int i = 1; i <= b; i++){
+			answer *= a;
+		}
+		return answer;
+	}
+	
+	public static int factorial(int a){
+		int answer = 1;
+		for(int i = 1;i <= a;i++){
+			answer *= i;
+		}
+		return answer;
+	}
+	
+	public static boolean isPrime(int a){
+		boolean check;
+		for(int i = a-1; i>1;i--){
+			check = Calculate.isDivisibleBy(a, i);
+			if(check == true){
+				return false;
+				}
+			}
+		return true;
+		}
+	
+	
+	public static int gcf(int a, int b){
+		while(b!=0){
+			int c = a;
+			a = b;
+			b = c%b;
+			}
+		return (int)Calculate.absValue(a);
+	}
+	
+	public static double sqrt(double a){
+		double t; 
+		double squareRoot = a / 2;
+		do {
+			t = squareRoot;
+			squareRoot = (t + (a / t)) / 2;
+		} while ((t - squareRoot) != 0);
+	 
+		return squareRoot;
+		
+	}
+	
+	public static String quadForm(int a, int b, int c){
+		String answer;
+		double x1 = (-b+Calculate.discriminant(a, b, c)/(2*a));
+		double x2 = (-b-Calculate.discriminant(a, b, c)/(2*a));
+		if(Calculate.discriminant(a, b, c) == 0){
+			Calculate.round2(x1);
+			answer = String.valueOf(x1);
+		}else if(Calculate.discriminant(a, b, c) < 0){
+			answer = "no real roots";
+		}else{
+			
+		}
+		
+		
+		
 	}
 }

@@ -27,10 +27,10 @@ public class DoMath {
 		System.out.println(Calculate.min(56, -34));
 		System.out.println(Calculate.round2(54.8973));
 		System.out.println(Calculate.exponent(3.0, 3));
-		System.out.println(Calculate.factorial(7));
+		System.out.println(Calculate.factorial(-1));
 		System.out.println(Calculate.isPrime(97));
 		System.out.println(Calculate.gcf(-64, -16));
-		System.out.println(Calculate.quadForm(2, 1, 4));
+		System.out.println(Calculate.quadForm(1, 4, 4));
 		
 	}	
 }

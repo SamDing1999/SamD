@@ -178,21 +178,16 @@ public class Calculate {
 	
 	public static String quadForm(int a, int b, int c){
 		String answer;
-		double x1;
-		double x2;
-		double x3;
-		double x4;
+		double x1 = (-b+Calculate.discriminant(a, b, c)/(2*a));
+		double x2 = (-b-Calculate.discriminant(a, b, c)/(2*a));
+		double x3 = Calculate.round2(x1);
+		double x4 = Calculate.round2(x2);
 		if(Calculate.discriminant(a, b, c) == 0){
-			x1 = (-b+Calculate.sqrt(Calculate.discriminant(a, b, c))/(2*a));
-			x3 = Calculate.round2(x1);
 			answer = String.valueOf(x3);
 		}else if(Calculate.discriminant(a, b, c) < 0){
 			answer = "no real roots";
 		}else{
-			x2 = (-b-Calculate.sqrt(Calculate.discriminant(a, b, c))/(2*a));
-			x4 = Calculate.round2(x2);
-			x1 = (-b+Calculate.sqrt(Calculate.discriminant(a, b, c))/(2*a));
-			x3 = Calculate.round2(x1);
+			
 			answer = String.valueOf(x3) + " and " + String.valueOf(x4);
 		}
 		return answer;
