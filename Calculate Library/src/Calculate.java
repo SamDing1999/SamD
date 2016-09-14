@@ -177,7 +177,7 @@ public class Calculate {
 	}
 	
 	public static String quadForm(int a, int b, int c){
-		String answer;
+		String answer = "";
 		double x1;
 		double x2;
 		double x3;
@@ -188,7 +188,7 @@ public class Calculate {
 			answer = String.valueOf(x3);
 		}else if(Calculate.discriminant(a, b, c) < 0){
 			answer = "no real roots";
-		}else{
+		}else if(Calculate.discriminant(a, b, c) > 0){
 			x2 = (-b-Calculate.sqrt(Calculate.discriminant(a, b, c))/(2*a));
 			x4 = Calculate.round2(x2);
 			x1 = (-b+Calculate.sqrt(Calculate.discriminant(a, b, c))/(2*a));
