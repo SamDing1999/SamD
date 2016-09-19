@@ -14,35 +14,35 @@ public class Calculate {
 		return answer;
 	}
 	
-	public static double cube(double a){
+	public static double cube(double num){
 		double answer;
-		answer = a*a*a;
+		answer = num*num*num;
 		return answer;
 	}
 	
-	public static double average(double b, double c){
+	public static double average(double num1, double num2){
 		double answer;
-		answer = (b+c)/2;
+		answer = (num1+num2)/2;
 		return answer;
 	}
 	
-	public static double average(double a, double b, double c){
+	public static double average(double num1, double num2, double num3){
 		double answer;
-		answer = (a+b+c)/3;
+		answer = (num1+num2+num3)/3;
 		return answer;
 	}
 	
-	public static double toDegrees(double a){
+	public static double toDegrees(double radian){
 		double answer;
 		double pi = 3.14159;
-		answer = (180*a)/pi;
+		answer = (180*radian)/pi;
 		return answer;
 	}
 	
-	public static double toRadians(double a){
+	public static double toRadians(double degree){
 		double answer;
 		double pi = 3.14159;
-		answer = (a*pi)/180;
+		answer = (degree*pi)/180;
 		return answer;
 	}
 	
