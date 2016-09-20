@@ -52,15 +52,15 @@ public class Calculate {
 		return answer;
 	}
 	
-	public static String toImproperFrac(int a, int b, int c){
+	public static String toImproperFrac(int whole, int numerator, int denom){
 		String answer;
-		answer = ((a*c)+b+"/"+c);
+		answer = ((whole*denom)+numerator+"/"+denom);
 		return answer;
 	}
 	
-	public static String toMixedNum(int a,int b){
+	public static String toMixedNum(int numerator,int denom){
 		String answer;
-		answer = ((a-(a%b))/b+"_"+(a%b)+"/"+b);
+		answer = ((numerator-(numerator%denom))/denom+"_"+(numerator%denom)+"/"+denom);
 		return answer;
 	}
 	
@@ -70,83 +70,91 @@ public class Calculate {
 		return answer;
 	}
 	
-	public static boolean isDivisibleBy(int a, int b){
-		if(a%b==0){
-			return true;
+	public static boolean isDivisibleBy(int num1, int num2){
+		if(num2!=0){
+			if(num1%num2==0){
+				return true;
+			}else{
+				return false;
+			}
 		}else{
 			return false;
 		}
 	}
 	
-	public static double absValue(double a){
+	public static double absValue(double number){
 		double answer = 0;
-		if(a<0){
-			answer = (-1)*a;
+		if(number<0){
+			answer = (-1)*number;
 		}else{
-			answer = a;
+			answer = number;
 		}
 		return answer;
 	}
 	
-	public static int max(int a,int b){
-		int c = 0;
-		if(a>b){
-			c = a;
-		}else{
-			c = b;
-		}
-		return c;
-	}
-	
-	public static int max(int a, int b, int c){
+	public static int max(int num1,int num2){
 		int answer = 0;
-		if(a>b&&a>c){
-			answer = a;
-		}else if(b>a&&b>c){
-			answer = b;
-		}else if(c>a&&c>b){
-			answer = c;
-		}
-		return answer;
-	}
-	
-	public static int min(int a, int b){
-		int answer = 0;
-		if(a<b){
-			answer = a;
+		if(num1>num2){
+			answer = num1;
 		}else{
-			answer = b;
+			answer = num2;
 		}
 		return answer;
 	}
 	
-	public static double round2(double a){
+	public static int max(int num1, int num2, int num3){
+		int answer = 0;
+		if(num1>num2&&num1>num3){
+			answer = num1;
+		}else if(num2>num1&&num2>num3){
+			answer = num2;
+		}else if(num3>num1&&num3>num2){
+			answer = num3;
+		}
+		return answer;
+	}
+	
+	public static int min(int num1, int num2){
+		int answer = 0;
+		if(num1<num2){
+			answer = num1;
+		}else{
+			answer = num2;
+		}
+		return answer;
+	}
+	
+	public static double round2(double number){
 		double answer;
-		double b = (int)(a*100);
-		answer = b/100;
+		double intNumber = (int)(number*100);
+		answer = intNumber/100;
 		return answer;
 	}
 	
-	public static double exponent(double a, int b){
+	public static double exponent(double base, int expon){
 		double answer = 1;
-		for(int i = 1; i <= b; i++){
-			answer *= a;
+		for(int i = 1; i <= expon; i++){
+			answer *= base;
 		}
 		return answer;
 	}
 	
-	public static int factorial(int a){
+	public static int factorial(int number){
 		int answer = 1;
-		for(int i = 1;i <= a;i++){
-			answer *= i;
+		if(number == 0){
+			answer = 0;
+		}else{
+			for(int i = 1;i <= number;i++){
+				answer *= i;
+			}
 		}
 		return answer;
 	}
 	
-	public static boolean isPrime(int a){
+	public static boolean isPrime(int number){
 		boolean check;
-		for(int i = a-1; i>1;i--){
-			check = Calculate.isDivisibleBy(a, i);
+		for(int i = number-1; i>1;i--){
+			check = Calculate.isDivisibleBy(number, i);
 			if(check == true){
 				return false;
 				}
@@ -155,24 +163,24 @@ public class Calculate {
 		}
 	
 	
-	public static int gcf(int a, int b){
-		while(b!=0){
-			int c = a;
-			a = b;
-			b = c%b;
+	public static int gcf(int num1, int num2){
+		while(num2!=0){
+			int num3 = num1;
+			num1 = num2;
+			num2 = num3%num2;
 			}
-		return (int)Calculate.absValue(a);
+		return (int)Calculate.absValue(num1);
 	}
 	
-	public static double sqrt(double a){
+	public static double sqrt(double num){
 		double t; 
 		double squareRoot;
-		if(a == 0){
+		if(num == 0){
 			squareRoot = 0;
-		}else{squareRoot = a / 2;
+		}else{squareRoot = num / 2;
 			do {
 				t = squareRoot;
-				squareRoot = (t + (a / t)) / 2;
+				squareRoot = (t + (num / t)) / 2;
 			} while ((t - squareRoot) != 0);
 		
 		}
@@ -181,10 +189,10 @@ public class Calculate {
 	
 	public static String quadForm(int a, int b, int c){
 		String answer = "";
-		double x1;
-		double x2;
-		double x3;
-		double x4;
+		double x1;//the positive solution
+		double x2;//the negative solution
+		double x3;//round the positive solution by using Calculate.round2 method
+		double x4;//round the negative solution by using Calculate.round2 method
 		if(Calculate.discriminant(a, b, c) == 0){
 			x1 = ((-b+Calculate.sqrt(Calculate.discriminant(a, b, c)))/(2*a));
 			x3 = Calculate.round2(x1);

@@ -20,18 +20,18 @@ public class DoMath {
 		System.out.println(Calculate.toImproperFrac(3, 1, 2));
 		System.out.println(Calculate.toMixedNum(7, 2));
 		System.out.println(Calculate.foil(2, 3, 4, -7));
-		System.out.println(Calculate.isDivisibleBy(12, 2));
+		System.out.println(Calculate.isDivisibleBy(12, 0));
 		System.out.println(Calculate.absValue(-7.0));
 		System.out.println(Calculate.max(98, 67));
 		System.out.println(Calculate.max(56, 74, 34));
 		System.out.println(Calculate.min(56, -34));
 		System.out.println(Calculate.round2(54.8973));
 		System.out.println(Calculate.exponent(3.0, 3));
-		System.out.println(Calculate.factorial(7));
+		System.out.println(Calculate.factorial(6));
 		System.out.println(Calculate.isPrime(97));
-		System.out.println(Calculate.gcf(-64, -16));
-		System.out.println(Calculate.sqrt(0));
-		System.out.println(Calculate.quadForm(1, 5, 4));
+		System.out.println(Calculate.gcf(-64, 0));
+		System.out.println(Calculate.sqrt(3));
+		System.out.println(Calculate.quadForm(1, 0, -4));
 		
 	}	
 }
