@@ -3,7 +3,8 @@
  */
 
 /**
- * @author APCS1
+ * @author Sam Ding
+ * A program that shows math methods
  *
  */
 public class Calculate {
