@@ -202,16 +202,12 @@ public class Calculate {
 	//A method that determines whether or not an integer is prime
 	public static boolean isPrime(int number){
 		boolean check;
-		if(number>1){
-			for(int i = number-1; i>1;i--){
+		for(int i = number-1; i>1;i--){
 			check = Calculate.isDivisibleBy(number, i);
 			if(check == true){
 				return false;
 				}
 			}
-		}else{
-			return false;
-		}
 		return true;
 		}
 	
@@ -232,15 +228,12 @@ public class Calculate {
 		double squareRoot;
 		if(num == 0){
 			squareRoot = 0;
-		}else if(num>0){
-			squareRoot = num / 2;
+		}else{squareRoot = num / 2;
 			do {
 				t = squareRoot;
 				squareRoot = (t + (num / t)) / 2;
 			} while ((t - squareRoot) != 0);
 		
-		}else{
-			squareRoot = num;
 		}
 		return squareRoot;
 	}

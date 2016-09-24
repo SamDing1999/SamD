@@ -240,7 +240,7 @@ public class Calculate {
 			} while ((t - squareRoot) != 0);
 		
 		}else{
-			squareRoot = num;
+			squareRoot = 100;
 		}
 		return squareRoot;
 	}
