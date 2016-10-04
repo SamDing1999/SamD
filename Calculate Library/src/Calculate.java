@@ -262,7 +262,11 @@ public class Calculate {
 			x4 = Calculate.round2(x2);
 			x1 = ((-b+Calculate.sqrt(Calculate.discriminant(a, b, c)))/(2*a));
 			x3 = Calculate.round2(x1);
-			answer = String.valueOf(x3) + " and " + String.valueOf(x4);
+			if(x3>x4){
+				answer = String.valueOf(x4) + " and " + String.valueOf(x3);
+			}else{
+				answer = String.valueOf(x3) + " and " + String.valueOf(x4);
+			}
 		}
 		return answer;
 		
