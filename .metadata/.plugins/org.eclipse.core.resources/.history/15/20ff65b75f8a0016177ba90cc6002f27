@@ -30,6 +30,9 @@ public class ProcessingNumbers {
 		int terms = userInput.nextInt();
 		
 		System.out.println("Enter a String of numbers seperated by spaces: ");
+		String numbers = userInput.nextLine();
+		
+		
 		for(int i = 1; i <= terms; i++){
 			int nextNum = userInput.nextInt();
 			if(i == 1){
@@ -48,6 +51,7 @@ public class ProcessingNumbers {
 				}
 				sum += nextNum;
 			}
+			nextNum = userInput.nextInt();
 		}
 		
 		System.out.println("The largest number is: " + max);

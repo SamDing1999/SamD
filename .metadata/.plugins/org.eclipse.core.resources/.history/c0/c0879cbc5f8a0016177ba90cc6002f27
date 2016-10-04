@@ -48,6 +48,7 @@ public class ProcessingNumbers {
 				}
 				sum += nextNum;
 			}
+			nextNum = userInput.nextInt();
 		}
 		
 		System.out.println("The largest number is: " + max);

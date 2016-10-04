@@ -26,12 +26,16 @@ public class ProcessingNumbers {
 		int sum = 0;
 		//The largest of all the even numbers the user typed
 		int maxEven = 0;
-		System.out.println("How many numbers would you like? ");
-		int terms = userInput.nextInt();
+		
 		
 		System.out.println("Enter a String of numbers seperated by spaces: ");
-		for(int i = 1; i <= terms; i++){
-			int nextNum = userInput.nextInt();
+		String numbers = userInput.nextLine();
+		String[] splited = numbers.split(" ");
+		int lengthOfSplited = splited.length;
+		
+		
+		for(int i = 0; i < lengthOfSplited; i++){
+			int nextNum = Integer.parseInt(splited[i]);
 			if(i == 1){
 				min = nextNum;
 				max = nextNum;
