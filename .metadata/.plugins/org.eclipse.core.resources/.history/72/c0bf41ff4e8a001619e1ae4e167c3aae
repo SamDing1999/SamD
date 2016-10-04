@@ -33,7 +33,7 @@ public class ProcessingNumbers {
 		String[] splited = numbers.split(" ");
 		int lengthOfSplited = splited.length;
 		
-		
+
 		for(int i = 0; i < lengthOfSplited; i++){
 			int nextNum = Integer.parseInt(splited[i]);
 			if(i == 1){
