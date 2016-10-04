@@ -157,14 +157,8 @@ public class Calculate {
 	//A method that rounds a double correctly to 2 decimal places
 	public static double round2(double number){
 		double answer;
-		double intNumber = (int)(number*1000);
-		int lastDig;
-		lastDig = (int)intNumber % 10;
-		if(lastDig >= 5){
-			answer = (intNumber+10-lastDig)/1000;
-		}else{
-			answer = (intNumber - lastDig)/1000;
-		}
+		double intNumber = (int)(number*100);
+		answer = intNumber/100;
 		return answer;
 	}
 	
