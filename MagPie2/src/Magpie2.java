@@ -13,10 +13,8 @@ public class Magpie2 {
 	 */
 	public String getResponse(String statement) {
 		String response = "";
-		int lengthOfTrim = statement.trim().length();
-	 if(lengthOfTrim==0){
-		response = "Say something, please.";
-	 }
+		String trim = statement.trim();
+		int lengthOfTrim = trim.length();
 		if (statement.indexOf("no") >= 0) {
 			response = "Why so negative?";
 		} else if (statement.indexOf("mother") >= 0
@@ -32,6 +30,8 @@ public class Magpie2 {
 			response = "Love is selfish";
 		}else if(statement.indexOf("homework")>=0){
 			response = "School is life, my frined";
+		}else if(lengthOfTrim==0){
+				response = "Say something, please.";
 		} else {
 			response = getRandomResponse();
 		}
@@ -43,11 +43,11 @@ public class Magpie2 {
 	 * returns a non-committal string
 	 */
 	private String getRandomResponse() {
-		final int NUMBER_OF_RESPONSES = 4;
+		final int NUMBER_OF_RESPONSES = 6;
 		double r = Math.random();
 		int whichResponse = (int) (r * NUMBER_OF_RESPONSES);
 		String response = "";
-
+		
 		if (whichResponse == 0) {
 			response = "Interesting, tell me more.";
 		} else if (whichResponse == 1) {
@@ -56,6 +56,10 @@ public class Magpie2 {
 			response = "Do you really think so?";
 		} else if (whichResponse == 3) {
 			response = "You don't say.";
+		}else if(whichResponse == 4){
+			response = "Do you have any question?";
+		}else if(whichResponse == 5){
+			response = "What is your favourite sports?";
 		}
 
 		return response;
