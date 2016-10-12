@@ -16,11 +16,8 @@ public class StringExplorer {
 		// Try other methods here:
 		
 		int notFoundPsn = sample.indexOf("slow");
-		System.out.println("sample.indexOf(\"slow\") = " + notFoundPsn);		
-		
-		// Add lines that illustrate how indexOf(String str, int fromIndex) works
-		int firstOccur = sample.toLowerCase().indexOf("the", 5);
-		System.out.println("After toLowerCase(), sample.indexof(\"the\", 5) = " + firstOccur);
+		System.out.println("sample.indexOf(\"slow\") =" + notFoundPsn);		
+
 	}
-	
+
 }
