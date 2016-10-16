@@ -109,7 +109,7 @@ public class Magpie3 {
 	 * returns the index of the first occurrence of goal in statement or -1 if it's not found
 	 */
 	private int findKeyword(String statement, String goal) {
-		return findKeyword("She's my sister", "sister", 0);
+		return findKeyword(statement, goal, 0);
 	}
 
 	/**
