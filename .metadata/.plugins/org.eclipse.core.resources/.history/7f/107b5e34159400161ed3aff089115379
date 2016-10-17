@@ -25,7 +25,7 @@ public class DoMath {
 		testDoMath("testing toImproperFrac with 3, 1, 4 ","13/4", Calculate.toImproperFrac(3,1,4));
 		testDoMath("testing toMixedNum with 7/2","3_1/2", Calculate.toMixedNum(7,2));
 		testDoMath("testing toMixedNum with -9/3","-3", Calculate.toMixedNum(-9,3));
-		testDoMath("testing foil with 2,3,6,-7,x","12x^2 + 4x – 21", Calculate.foil(2,3,6,-7));
+		testDoMath("testing foil with 2,3,6,-7,x","12x^2 + 4x – 21", Calculate.foil(2,3,6,-7,"x"));
 		testDoMath("testing isDivisibleBy with 9 and 3", true, Calculate.isDivisibleBy(9,3));
 		testDoMath("testing isDivisibleBy with 8 and 3",false, Calculate.isDivisibleBy(8,3));
 		testDoMath("testing absValue with 8",8.0, Calculate.absValue(8));
