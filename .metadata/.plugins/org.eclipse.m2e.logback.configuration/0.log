@@ -87,3 +87,6 @@
 2016-10-15 20:14:16,322 [Thread-6] ERROR org.eclipse.jgit.util.FS - fatal: Could not switch to '/Library/Developer/CommandLineTools/usr/etc/': No such file or directory
 
 2016-10-15 20:14:22,074 [Worker-0] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2016-10-16 15:42:39,333 [Thread-8] ERROR org.eclipse.jgit.util.FS - fatal: Could not switch to '/Library/Developer/CommandLineTools/usr/etc/': No such file or directory
+
+2016-10-16 15:42:39,811 [Worker-3] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.

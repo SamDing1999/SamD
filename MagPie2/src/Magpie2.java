@@ -26,8 +26,8 @@ public class Magpie2 {
 			response = "She sounds like a good teacher.";
 		}else if(statement.indexOf("why")>=0){
 			response = "Because you are my friend!";
-		}else if(statement.indexOf("love")>=0){
-			response = "Love is selfish";
+		}else if(statement.indexOf("basketball")>=0){
+			response = "Basketball is life.";
 		}else if(statement.indexOf("homework")>=0){
 			response = "School is life, my frined";
 		}else if(lengthOfTrim==0){

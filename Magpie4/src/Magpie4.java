@@ -25,21 +25,42 @@ public class Magpie4 {
 	public String getResponse(String statement) {
 		
 		// Paste Part 3 code here.  The method has new pieces that continue below and should flow from your previous code.
-
+		String response = "";
+		String trim = statement.trim();
+		int lengthOfTrim = trim.length();
+		if (statement.indexOf("no") >= 0) {
+			response = "Why so negative?";
+		} else if (statement.indexOf("mother") >= 0
+				|| statement.indexOf("father") >= 0
+				|| statement.indexOf("sister") >= 0
+				|| statement.indexOf("brother") >= 0) {
+			response = "Tell me more about your family.";
+		}else if(statement.indexOf("Dreyer")>=0){
+			response = "She sounds like a good teacher.";
+		}else if(statement.indexOf("why")>=0){
+			response = "Because you are my friend!";
+		}else if(statement.indexOf("basketball")>=0){
+			response = "Basketball is life.";
+		}else if(statement.indexOf("homework")>=0){
+			response = "School is life, my frined.";
+		}else if(lengthOfTrim==0){
+				response = "Say something, please.";
+		}
 
 		// Responses which require transformations
 		else if (findKeyword(statement, "I want to", 0) >= 0) {
 			response = transformIWantToStatement(statement);
-		}
-
-		else {
-			// Look for a two word (you <something> me)
+		}else if(findKeyword(statement, "I want", 0) >= 0){
+			response = transformIWantStatement(statement);
+		}else{
+			// Look for a two word (you <something> me || I <something> me)
 			// pattern
-			int psn = findKeyword(statement, "you", 0);
 
-			if (psn >= 0 && findKeyword(statement, "me", psn) >= 0) {
+			if (findKeyword(statement, "me", 0) >=  findKeyword(statement, "you", 0)&&findKeyword(statement, "you", 0) >= 0) {
 				response = transformYouMeStatement(statement);
-			} else {
+			}else if(findKeyword(statement, "you", 0) >=  findKeyword(statement, "I", 0)&&findKeyword(statement, "I", 0) >= 0){
+				response = transformIYouStatement(statement);
+			} else{
 				response = getRandomResponse();
 			}
 		}
@@ -65,6 +86,27 @@ public class Magpie4 {
 		String restOfStatement = statement.substring(psn + 9).trim();
 		return "What would it mean to " + restOfStatement + "?";
 	}
+	
+	/**
+	 * Take a statement with "I want <something>" and transform it into 
+	 * "Would you really be happy if you had <something>?"
+	 * 
+	 * @param statement
+	 * 			  the user statement, assumed to contain "I want"
+	 * @return the transformed statement
+	  */
+	private String transformIWantStatement(String statement){
+		// Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement.length() - 1);
+		if (lastChar.equals(".")) {
+			statement = statement.substring(0, statement.length() - 1);
+		}
+		int psn = findKeyword(statement, "I want ", 0);
+		String restOfStatement = statement.substring(psn + 6).trim();
+		return "Would you really be happy if you had " + restOfStatement + "?";
+		
+	}
 
 	/**
 	 * Take a statement with "you <something> me" and transform it into
@@ -89,6 +131,32 @@ public class Magpie4 {
 				.trim();
 		return "What makes you think that I " + restOfStatement + " you?";
 	}
+	
+	/**
+	 * Take a statement with "I <something> you" and transform it into
+	 * "Why do you <something> me?"
+	 * 
+	 * @param statement
+	 *            the user statement, assumed to contain "I" followed by "you"
+	 * @return the transformed statement
+	 */
+	private String transformIYouStatement(String statement) {
+		// Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement.length() - 1);
+		if (lastChar.equals(".")) {
+			statement = statement.substring(0, statement.length() - 1);
+		}
+
+		int psnOfI = findKeyword(statement, "I", 0);
+		int psnOfYou = findKeyword(statement, "you", psnOfI + 1);
+
+		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou)
+				.trim();
+		return "Why do you " + restOfStatement + " me?";
+	}
+	
+	
 
 	/**
 	 * Search for one word in phrase. The search is not case sensitive. This
@@ -156,6 +224,27 @@ public class Magpie4 {
 	private String getRandomResponse() {
 		
 		// Paste part 3 code here	
+		
+	final int NUMBER_OF_RESPONSES = 6;
+	double r = Math.random();
+	int whichResponse = (int) (r * NUMBER_OF_RESPONSES);
+	String response = "";
+	
+	if (whichResponse == 0) {
+		response = "Interesting, tell me more.";
+	} else if (whichResponse == 1) {
+		response = "Hmmm.";
+	} else if (whichResponse == 2) {
+		response = "Do you really think so?";
+	} else if (whichResponse == 3) {
+		response = "You don't say.";
+	}else if(whichResponse == 4){
+		response = "Do you have any question?";
+	}else if(whichResponse == 5){
+		response = "What is your favourite sports?";
 	}
+
+	return response;
+}
 
 }
