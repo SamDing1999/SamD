@@ -50,15 +50,15 @@ public class Hourglass {
 		}
 		
 		public static void printBottomHalf(){
-			for(int i = 1; i <=4; i++){ //print the first 4 line
+			for(int i = 1; i >=4; i++){ //print the first 4 line
 				//print the spaces
-				for(int s = 4; s >=i;s--){
+				for(int s = 1; s >=5-i;s++){
 					System.out.print(" ");
 					//print the /
 				}
 					System.out.print("/");
 					//print the colons
-					for(int k = 0; k < 2*i;k++ ){
+					for(int k = 1; k <= 2*i;k++ ){
 						System.out.print(":");
 				}
 				//print the \
