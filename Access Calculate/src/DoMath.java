@@ -25,7 +25,7 @@ public class DoMath {
 		testDoMath("testing toImproperFrac with 3, 1, 4 ","13/4", Calculate.toImproperFrac(3,1,4));
 		testDoMath("testing toMixedNum with 7/2","3_1/2", Calculate.toMixedNum(7,2));
 		testDoMath("testing toMixedNum with -9/3","-3", Calculate.toMixedNum(-9,3));
-		testDoMath("testing foil with 2,3,6,-7,x","12x^2 + 4x – 21", Calculate.foil(2,3,6,-7));
+		testDoMath("testing foil with 2,3,6,-7,x","12x^2 + 4x – 21", Calculate.foil(2,3,6,-7,"x"));
 		testDoMath("testing isDivisibleBy with 9 and 3", true, Calculate.isDivisibleBy(9,3));
 		testDoMath("testing isDivisibleBy with 8 and 3",false, Calculate.isDivisibleBy(8,3));
 		testDoMath("testing absValue with 8",8.0, Calculate.absValue(8));
@@ -34,7 +34,7 @@ public class DoMath {
 		testDoMath("testing absValue with 0",0, Calculate.absValue(0.0));
 		testDoMath("testing max with 2 integers 8 & 9",9, Calculate.max(8,9));
 		testDoMath("testing max with 2 integers -5 & -3",-3, Calculate.max(-5,-3));
-		testDoMath("testing max with 3 doubles -4, 3, & 9",9.0, Calculate.max(-4,3, 9));
+		testDoMath("testing max with 3 doubles -4, 3, & 9",9.0, Calculate.max(-4.0,3, 9.0));
 		testDoMath("testing min with 2 integers -5 & -3",-5, Calculate.min(-5,-3));
 		testDoMath("testing round2 with 85.9876", 85.99, Calculate.round2(85.98765));
 		testDoMath("testing round2 with 5.5", 5.50, Calculate.round2(5.5));

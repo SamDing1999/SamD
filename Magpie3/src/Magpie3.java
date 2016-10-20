@@ -46,8 +46,6 @@ public class Magpie3 {
 			response = "School is life, my frined";
 		}else if(lengthOfTrim==0){
 				response = "Say something, please.";
-		}else if(findKeyword("She's my sister", "sister", 0)>=0){
-			response = 
 		} else {
 			response = getRandomResponse();
 		}

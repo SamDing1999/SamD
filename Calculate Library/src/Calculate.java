@@ -2,6 +2,7 @@
 
 /**
  * @author Sam Ding
+ * Date : 10/20/2016
  * A program that shows math methods
  *
  */
@@ -77,6 +78,10 @@ public class Calculate {
 		String answer;
 		if(denom == 0){
 			answer = "Undefined";
+		}else if(numerator == 0){
+			answer = ("0");
+		}else if(numerator%denom == 0){
+			answer = (""+numerator/denom);
 		}else{
 			answer = ((numerator-(numerator%denom))/denom+"_"+(numerator%denom)+"/"+denom);
 		}
@@ -85,9 +90,9 @@ public class Calculate {
 	
 	/*A method that converts a binomial multiplication of the form(ax + b)(cx + d) into
 	 a quadratic equation of the form (ax^x + bx + c)*/
-	public static String foil(int a, int b, int c, int d){
+	public static String foil(int a, int b, int c, int d, String variable){
 		String answer;
-		answer = ((a*c)+"n^2"+((a*d)+(b*c))+"n"+b*d);
+		answer = ((a*c) + variable + "^2" + " + "+((a*d)+(b*c)) + variable + b*d);
 		return answer;
 	}
 	
@@ -129,8 +134,8 @@ public class Calculate {
 	}
 	
 	//A method that returns the largest among three values passed
-	public static int max(int num1, int num2, int num3){
-		int answer = 0;
+	public static double max(double num1, double num2, double num3){
+		double answer = 0;
 		if(num1>num2&&num1>num3){
 			answer = num1;
 		}else if(num2>num1&&num2>num3){
