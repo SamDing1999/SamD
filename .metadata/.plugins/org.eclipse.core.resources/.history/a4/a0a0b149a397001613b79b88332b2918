@@ -92,12 +92,7 @@ public class Calculate {
 	 a quadratic equation of the form (ax^x + bx + c)*/
 	public static String foil(int a, int b, int c, int d, String variable){
 		String answer;
-		if(b*d<0){
-			int positiveC = (int)Calculate.absValue(b*d);
-			answer = ((a*c) + variable + "^2" + " + "+((a*d)+(b*c)) + variable + " - " + positiveC);
-		}else{
-			answer = ((a*c) + variable + "^2" + " + "+((a*d)+(b*c)) + variable + b*d);
-		}
+		answer = ((a*c) + variable + "^2" + " + "+((a*d)+(b*c)) + variable + b*d);
 		return answer;
 	}
 	
@@ -171,9 +166,9 @@ public class Calculate {
 		int lastDig;
 		lastDig = (int)intNumber % 10;
 		if(lastDig >= 5){
-			answer = ((intNumber+10-lastDig)/1000) * 1.00;
+			answer = (intNumber+10-lastDig)/1000;
 		}else{
-			answer = ((intNumber - lastDig)/1000) * 1.00;
+			answer = (intNumber - lastDig)/1000;
 		}
 		return answer;
 	}

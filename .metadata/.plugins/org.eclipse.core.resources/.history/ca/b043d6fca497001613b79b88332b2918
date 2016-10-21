@@ -171,9 +171,9 @@ public class Calculate {
 		int lastDig;
 		lastDig = (int)intNumber % 10;
 		if(lastDig >= 5){
-			answer = ((intNumber+10-lastDig)/1000) * 1.00;
+			answer = (intNumber+10-lastDig)/1000;
 		}else{
-			answer = ((intNumber - lastDig)/1000) * 1.00;
+			answer = (intNumber - lastDig)/1000;
 		}
 		return answer;
 	}
