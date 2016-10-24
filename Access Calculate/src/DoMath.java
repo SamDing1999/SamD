@@ -65,7 +65,7 @@ public class DoMath {
 			System.out.println(testDesc + " failed! Returned " + testAns + " instead of " + rightAns);
 		}
 	}
-
+bn
 	// double tester
 	public static void testDoMath(String testDesc, double rightAns, double testAns) {
 		if (rightAns == testAns) {
