@@ -19,10 +19,9 @@ public class Split
 		String[] split = str.split("really");
 		System.out.println(Arrays.toString(split));
 		
-		System.out.println(Arrays.toString("applespineapplesbreadlettustomatobaconmayohambread".split("bread")));
 		
 		//TASK 1:
-		middleOfSandwich("applespineapplesbreadlettustomatobaconmayoham");
+		middleOfSandwich("breadbread");
 		//breadcheese
 		//TASK 2:
 		//middleOfSandwichWithSpaces("apples pineapples bread lettus tomato bacon mayo ham bread cheese");
@@ -37,19 +36,23 @@ public class Split
 			 * What if it's a fancy sandwich with multiple pieces of bread?
 			*/
 	public static void middleOfSandwich(String sandwich){ 
-		String[] middle = sandwich.split("bread");
+		String[] object = sandwich.split("bread");
+		int firstBreadPosi = sandwich.indexOf("bread");
+		int secondBreadPosi = sandwich.indexOf("bread", firstBreadPosi+5);
 		//check if "bread" occurs twice
-		if(middle.length>2){
-			for(int i = 0; i <= middle.length-2; i++){
-				System.out.println(middle[i+1]);
-			}
-		}else if(middle.length<=2){
-			if(){
-				
-			}else{
+		if(firstBreadPosi < 0){
+			System.out.println("Not a sandwich");
+		}else if(firstBreadPosi >=0&& secondBreadPosi < 0){
+			System.out.println("Not a sandwich");
+		}else{
+			
+				for(int i = 0; i <= object.length-2; i++){
+					System.out.println(object[i+1]);
+				}
 				
 			}
 		}
+		
 	}
 	
 	//Your task part 2:

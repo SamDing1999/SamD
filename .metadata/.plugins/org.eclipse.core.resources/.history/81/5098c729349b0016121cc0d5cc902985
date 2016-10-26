@@ -1,0 +1,71 @@
+import java.util.Arrays;
+
+public class Split 
+{
+
+	public static void main(String[] args) 
+	{
+		//String.split();
+		//It's a method that acts on a string, <StringName>.split(<String sp>);
+		//Where sp is the string where the string splits
+		//And it returns an array
+		// Example: "I like apples!".split(" "); 
+		//		it will split at spaces and return an array of ["I","like","apples!"]
+		// Example 2: "I really like really red apples"split("really")
+		//		it will split at the word "really" and return an array of ["I "," like "," apples!"]
+		
+		//play around with String.split! what happens if you "I reallyreally like apples".split("really") ?
+		String str = "I reallyreally like apples";
+		String[] split = str.split("really");
+		System.out.println(Arrays.toString(split));
+		
+		
+		//TASK 1:
+		middleOfSandwich("breadbreadsososoosososobread");
+		//breadcheese
+		//TASK 2:
+		//middleOfSandwichWithSpaces("apples pineapples bread lettus tomato bacon mayo ham bread cheese");
+
+	}
+	
+	//Both methods won't work if there is no "bread" or only one "bread".
+	
+	//Your task:
+			/*Write a method that take in a string like "applespineapplesbreadlettustomatobaconmayohambreadcheese" describing a sandwich
+			 * use String.split to split up the sandwich by the word "bread" and return what's in the middle of the sandwich and ignores what's on the outside
+			 * What if it's a fancy sandwich with multiple pieces of bread?
+			*/
+	public static void middleOfSandwich(String sandwich){ 
+		String[] object = sandwich.split("bread");
+		int firstBreadPosi = sandwich.indexOf("bread");
+		int secondBreadPosi = sandwich.indexOf("bread", firstBreadPosi+5);
+		//check if "bread" occurs twice
+		if(firstBreadPosi < 0){
+			System.out.println("Not a sandwich");
+		}else if(firstBreadPosi >=0&& secondBreadPosi < 0){
+			System.out.println("Not a sandwich");
+		}else{
+			for(int i = 0; i <= object.length-2; i++){
+				System.out.println(object[i+1]);
+			}
+		}
+		
+	}
+	
+	//Your task part 2:
+			/*Write a method that take in a string like "apples pineapples bread lettus tomato bacon mayo ham bread cheese" describing a sandwich
+			 * use String.split to split up the sandwich at the spaces, " ", and return what's in the middle of the sandwich and ignores what's on the outside
+			 * Again, what if it's a fancy sandwich with multiple pieces of bread?
+			*/
+	public static void middleOfSandwichWithSpaces(String sandwich){
+		String[] middle = sandwich.split(" bread ");
+		if(middle.length>=2
+				){
+			for(int i = 0; i <= middle.length-2; i++){
+				System.out.println(middle[i+1]);
+			}
+		}
+	}
+			
+
+}
