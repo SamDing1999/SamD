@@ -17,14 +17,14 @@ public class Split
 		//play around with String.split! what happens if you "I reallyreally like apples".split("really") ?
 		String str = "I reallyreally like apples";
 		String[] split = str.split("really");
-		System.out.println(Arrays.toString(split));
+		//System.out.println(Arrays.toString(split));
 		
-		
+		System.out.println(Arrays.toString("breadbreadnice".split("bread")));
 		//TASK 1:
-		middleOfSandwich("sushibreadbread");
+		middleOfSandwich("breadhahabread");
 		//breadcheese
 		//TASK 2:
-		//middleOfSandwichWithSpaces("apples pineapples bread lettus tomato bacon mayo ham bread cheese");
+		middleOfSandwichWithSpaces("apples pineapples bread lettus tomato bacon mayo ham bread cheese");
 
 	}
 	
@@ -44,28 +44,49 @@ public class Split
 			System.out.println("Not a sandwich");
 		}else if(firstBreadPosi >=0&& secondBreadPosi < 0){
 			System.out.println("Not a sandwich");
+		}else if(object == null){
+			System.out.println("Not a sandwich");
 		}else{
-			
-				for(int i = 0; i <= object.length-2; i++){
-					if(sandwich.indexOf(object[0])>firstBreadPosi){
-						if(object[0] == " "){
-							System.out.println("Not a sandwich");
-						}else{
-							System.out.println(object[i]);
-						}
-					}else if(sandwich.indexOf(object[0])<firstBreadPosi){
-						if(object[1] == " "){
-							System.out.println("Not a sandwich");
-						}else{
-						System.out.println(object[i+1]);
-						}
-					}
+			if(sandwich.indexOf(object[object.length-1])<firstBreadPosi){
+				System.out.println("Not a sandwich");
+			}
+			if(sandwich.indexOf(object[object.length-1])<secondBreadPosi){
+				for(int i = 1 ; i <= object.length-1; i++){
+						System.out.println(object[i]);
 				}
+			}else{
+				for(int i = 1 ; i <= object.length-2; i++){
+					System.out.println(object[i]);
+				}
+			}
+				
+				/*
+				if(sandwich.indexOf(object[0])<secondBreadPosi && sandwich.indexOf(object[0])<firstBreadPosi) {
+					//front
+					System.out.println(object[i]);
+				}else if(sandwich.indexOf(object[object.length-1])>secondBreadPosi && sandwich.indexOf(object[0])>firstBreadPosi){
+					//back
+					System.out.println(object[i]);
+				}else if(sandwich.indexOf(object[object.length-1])<secondBreadPosi && sandwich.indexOf(object[0])>firstBreadPosi){
+					//both
+					System.out.println(object[i + 1]);
+				}else if(sandwich.indexOf(object[object.length-1])>secondBreadPosi && sandwich.indexOf(object[0])<firstBreadPosi){
+					for(int j = 1; j <= object.length-2; j++){
+						System.out.println(object[j]);
+					}
+					i = object.length;
+				}else{
+					System.out.println("Not a sandwich");
+				}*/
+			
+
 
 				
 			}
 		}
 		
+	
+	//public static void 
 	
 	//Your task part 2:
 			/*Write a method that take in a string like "apples pineapples bread lettus tomato bacon mayo ham bread cheese" describing a sandwich
@@ -73,13 +94,35 @@ public class Split
 			 * Again, what if it's a fancy sandwich with multiple pieces of bread?
 			*/
 	public static void middleOfSandwichWithSpaces(String sandwich){
-		String[] middle = sandwich.split(" bread ");
-		if(middle.length>=2
-				){
-			for(int i = 0; i <= middle.length-2; i++){
-				System.out.println(middle[i+1]);
+		String[] object = sandwich.split(" bread ");
+		int firstBreadPosi = sandwich.indexOf(" bread ");
+		int secondBreadPosi = sandwich.indexOf(" bread ", firstBreadPosi+7);
+		//check if "bread" occurs twice
+		if(firstBreadPosi < 0){
+			System.out.println("Not a sandwich");
+		}else if(firstBreadPosi >=0&& secondBreadPosi < 0){
+			System.out.println("Not a sandwich");
+		}else if(object == null){
+			System.out.println("Not a sandwich");
+		}else{
+			if(sandwich.indexOf(object[object.length-1])<firstBreadPosi){
+				System.out.println("Not a sandwich");
 			}
-		}
+			if(sandwich.indexOf(object[object.length-1])<secondBreadPosi){
+				for(int i = 1 ; i <= object.length-1; i++){
+						System.out.println(object[i]);
+				}
+			}else{
+				for(int i = 1 ; i <= object.length-2; i++){
+					System.out.println(object[i]);
+				}
+			}
+				
+			
+
+
+				
+			}
 	}
 			
 
