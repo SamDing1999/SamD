@@ -94,9 +94,9 @@ public class Calculate {
 		String answer;
 		if(b*d<0){
 			int positiveC = (int)Calculate.absValue(b*d);
-			answer = ((a*c) + variable + "^2" + " + "+((a*d)+(b*c)) + variable + " - " + positiveC);
+			answer = ((a*c) + variable + "^2" + " + "+((a*d)+(b*c)) + variable + " – " + positiveC);
 		}else{
-			answer = ((a*c) + variable + "^2" + " + "+((a*d)+(b*c)) + variable + b*d);
+			answer = ((a*c) + variable + "^2" + " + "+((a*d)+(b*c)) + variable + " + " + b*d);
 		}
 		return answer;
 	}
@@ -126,8 +126,8 @@ public class Calculate {
 	}
 	
 	//A method that returns the larger of two values passed
-	public static int max(int num1,int num2){
-		int answer = 0;
+	public static double max(double num1,double num2){
+		double answer = 0;
 		if(num1>num2){
 			answer = num1;
 		}else if(num2>num1){

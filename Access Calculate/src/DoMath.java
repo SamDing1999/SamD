@@ -8,9 +8,12 @@
  */
 import java.util.Date;
 
+
 public class DoMath {
 
+
 	public static void main(String[] args) {
+
 
 		testDoMath("testing square with 5", 25, Calculate.square(5));
 		testDoMath("testing square with -2", 4, Calculate.square(-2));
@@ -25,7 +28,7 @@ public class DoMath {
 		testDoMath("testing toImproperFrac with 3, 1, 4 ","13/4", Calculate.toImproperFrac(3,1,4));
 		testDoMath("testing toMixedNum with 7/2","3_1/2", Calculate.toMixedNum(7,2));
 		testDoMath("testing toMixedNum with -9/3","-3", Calculate.toMixedNum(-9,3));
-		testDoMath("testing foil with 2,3,6,-7,x","12x^2 + 4x – 21", Calculate.foil(2,3,6,-7,"x"));
+		testDoMath("testing foil with 2,3,6,-7,x","12x^2 + 4x â€“ 21", Calculate.foil(2,3,6,-7,"x"));
 		testDoMath("testing isDivisibleBy with 9 and 3", true, Calculate.isDivisibleBy(9,3));
 		testDoMath("testing isDivisibleBy with 8 and 3",false, Calculate.isDivisibleBy(8,3));
 		testDoMath("testing absValue with 8",8.0, Calculate.absValue(8));
@@ -56,20 +59,24 @@ public class DoMath {
 		//test time for long square root
 	}
 
+
 	// Integer tester
 	public static void testDoMath(String testDesc, int rightAns, int testAns) {
 		if (rightAns == testAns) {
 			System.out.println(testDesc + " passed");
 
+
 		} else {
 			System.out.println(testDesc + " failed! Returned " + testAns + " instead of " + rightAns);
 		}
 	}
-bn
+
+
 	// double tester
 	public static void testDoMath(String testDesc, double rightAns, double testAns) {
 		if (rightAns == testAns) {
 			System.out.println(testDesc + " passed");
+
 
 		} else {
 			System.out.println(testDesc + " failed! Returned " + testAns + " instead of " + rightAns);
@@ -89,6 +96,7 @@ bn
 				if (rightAns.equals(testAns)) {
 					System.out.println(testDesc + " passed");
 
+
 				} else {
 					System.out.println(testDesc + " failed! Returned " + testAns + " instead of " + rightAns);
 				}
@@ -97,6 +105,7 @@ bn
 		public static void testDoMath(String testDesc, boolean rightAns, boolean testAns) {
 			if (rightAns == testAns) {
 				System.out.println(testDesc + " passed");
+
 
 			} else {
 				System.out.println(testDesc + " failed! Returned " + testAns + " instead of " + rightAns);

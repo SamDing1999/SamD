@@ -17,15 +17,40 @@ public class Split
 		//play around with String.split! what happens if you "I reallyreally like apples".split("really") ?
 		String str = "I reallyreally like apples";
 		String[] split = str.split("really");
+		System.out.println(Arrays.toString(split));
 		//System.out.println(Arrays.toString(split));
 		
-		System.out.println(Arrays.toString("breadbreadnice".split("bread")));
 		//TASK 1:
-		middleOfSandwich("breadhahabread");
+		System.out.println("Results of Task 1:");
+		middleOfSandwich("bread");
+		middleOfSandwich("bacon");
+		middleOfSandwich("breadbacon");
+		middleOfSandwich("baconbread");
+		middleOfSandwich("breadbread");
+		middleOfSandwich("breadbaconbread");
+		middleOfSandwich("baconbreadbread");
+		middleOfSandwich("breadbreadbacon");
+		middleOfSandwich("applebreadbacanbread");
+		middleOfSandwich("lemonbreadbaconbreadsushi");
+		middleOfSandwich("lemonbreadbreadbaconbreadsushi");
+		middleOfSandwich("lemonbreadbaconbreadsushi");
+		
 		//breadcheese
 		//TASK 2:
-		middleOfSandwichWithSpaces("apples pineapples bread lettus tomato bacon mayo ham bread cheese");
-
+		System.out.println();
+		System.out.println("Results of Task 2:");
+		middleOfSandwichWithSpaces("bread");
+		middleOfSandwichWithSpaces("bacon");
+		middleOfSandwichWithSpaces("bread bacon");
+		middleOfSandwichWithSpaces("bacon bread");
+		middleOfSandwichWithSpaces("bread bread");
+		middleOfSandwichWithSpaces("bread bacon bread");
+		middleOfSandwichWithSpaces("bacon bread bread");
+		middleOfSandwichWithSpaces("bread bread bacon");
+		middleOfSandwichWithSpaces("apple bread bacan bread");
+		middleOfSandwichWithSpaces("lemon bread bacon bread sushi");
+		middleOfSandwichWithSpaces("lemon bread bread bacon bread sushi");
+		middleOfSandwichWithSpaces("lemon bread bacon bread sushi");
 	}
 	
 	//Both methods won't work if there is no "bread" or only one "bread".
@@ -39,6 +64,7 @@ public class Split
 		String[] object = sandwich.split("bread");
 		int firstBreadPosi = sandwich.indexOf("bread");
 		int secondBreadPosi = sandwich.indexOf("bread", firstBreadPosi+5);
+		
 		//check if "bread" occurs twice
 		if(firstBreadPosi < 0){
 			System.out.println("Not a sandwich");
@@ -46,44 +72,19 @@ public class Split
 			System.out.println("Not a sandwich");
 		}else if(object == null){
 			System.out.println("Not a sandwich");
-		}else{
-			if(sandwich.indexOf(object[object.length-1])<firstBreadPosi){
-				System.out.println("Not a sandwich");
-			}
-			if(sandwich.indexOf(object[object.length-1])<secondBreadPosi){
-				for(int i = 1 ; i <= object.length-1; i++){
-						System.out.println(object[i]);
-				}
-			}else{
-				for(int i = 1 ; i <= object.length-2; i++){
-					System.out.println(object[i]);
-				}
-			}
-				
-				/*
-				if(sandwich.indexOf(object[0])<secondBreadPosi && sandwich.indexOf(object[0])<firstBreadPosi) {
-					//front
-					System.out.println(object[i]);
-				}else if(sandwich.indexOf(object[object.length-1])>secondBreadPosi && sandwich.indexOf(object[0])>firstBreadPosi){
-					//back
-					System.out.println(object[i]);
-				}else if(sandwich.indexOf(object[object.length-1])<secondBreadPosi && sandwich.indexOf(object[0])>firstBreadPosi){
-					//both
-					System.out.println(object[i + 1]);
-				}else if(sandwich.indexOf(object[object.length-1])>secondBreadPosi && sandwich.indexOf(object[0])<firstBreadPosi){
-					for(int j = 1; j <= object.length-2; j++){
-						System.out.println(object[j]);
-					}
-					i = object.length;
-				}else{
-					System.out.println("Not a sandwich");
-				}*/
 			
-
-
-				
-			}
+		}else{
+			String middle;// middle of the sandwich
+			if(firstBreadPosi+5 == secondBreadPosi){
+				System.out.println("Not a sandwich");
+			}else{
+				middle = sandwich.substring(firstBreadPosi+5, secondBreadPosi);
+				System.out.println(middle);
+				}
 		}
+			
+	}
+		
 		
 	
 	//public static void 
@@ -94,36 +95,23 @@ public class Split
 			 * Again, what if it's a fancy sandwich with multiple pieces of bread?
 			*/
 	public static void middleOfSandwichWithSpaces(String sandwich){
-		String[] object = sandwich.split(" bread ");
-		int firstBreadPosi = sandwich.indexOf(" bread ");
-		int secondBreadPosi = sandwich.indexOf(" bread ", firstBreadPosi+7);
-		//check if "bread" occurs twice
-		if(firstBreadPosi < 0){
-			System.out.println("Not a sandwich");
-		}else if(firstBreadPosi >=0&& secondBreadPosi < 0){
-			System.out.println("Not a sandwich");
-		}else if(object == null){
-			System.out.println("Not a sandwich");
-		}else{
-			if(sandwich.indexOf(object[object.length-1])<firstBreadPosi){
-				System.out.println("Not a sandwich");
+		int firstBreadPosi = sandwich.indexOf("bread");
+		int secondBreadPosi = sandwich.indexOf("bread" , firstBreadPosi +5);
+		
+		if (secondBreadPosi > 0){
+			String middle = sandwich.substring(firstBreadPosi+6, secondBreadPosi);
+			if (middle.length() > 1){
+				String[] realSandwich1 = middle.split(" ");
+				String newSandwich1 = Arrays.toString(realSandwich1);
+				sandwich = newSandwich1;
+			}else if (middle.length() < 1){
+				sandwich = "Not a sandwich";
+		
+			}else{ 
+				sandwich = "Not a sandwich";
 			}
-			if(sandwich.indexOf(object[object.length-1])<secondBreadPosi){
-				for(int i = 1 ; i <= object.length-1; i++){
-						System.out.println(object[i]);
-				}
-			}else{
-				for(int i = 1 ; i <= object.length-2; i++){
-					System.out.println(object[i]);
-				}
-			}
-				
-			
-
-
-				
-			}
-	}
-			
+			System.out.println(sandwich);
+		}
+	}	
 
 }
