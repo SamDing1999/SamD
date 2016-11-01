@@ -15,23 +15,23 @@ public class Calculate {
 	}
 	
 	//A method that cubes the value passed
-	public static double cube(double num){
+	public static double cube(double number){
 		double answer;
-		answer = num*num*num;
+		answer = number*number*number;
 		return answer;
 	}
 	
 	//A method that returns the average of two values passed
-	public static double average(double num1, double num2){
+	public static double average(double firstNumber, double secondNumber){
 		double answer;
-		answer = (num1+num2)/2;
+		answer = (firstNumber+secondNumber)/2;
 		return answer;
 	}
 	
 	//A method that returns the average of three values passed
-	public static double average(double num1, double num2, double num3){
+	public static double average(double firstNumber, double secondNumber, double thirdNumber){
 		double answer;
-		answer = (num1+num2+num3)/3;
+		answer = (firstNumber+secondNumber+thirdNumber)/3;
 		return answer;
 	}
 	
@@ -102,9 +102,9 @@ public class Calculate {
 	}
 	
 	//A method that determines whether or not one integer is evenly divisible by another
-	public static boolean isDivisibleBy(int num1, int num2){
-		if(num2!=0){
-			if(num1%num2==0){
+	public static boolean isDivisibleBy(int numerator, int denom){
+		if(denom!=0){
+			if(numerator%denom==0){
 				return true;
 			}else{
 				return false;

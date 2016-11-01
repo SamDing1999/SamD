@@ -14,7 +14,6 @@ public class DoMath {
 
 	public static void main(String[] args) {
 
-
 		testDoMath("testing square with 5", 25, Calculate.square(5));
 		testDoMath("testing square with -2", 4, Calculate.square(-2));
 		testDoMath("testing cube with 3", 27, Calculate.cube(3));
