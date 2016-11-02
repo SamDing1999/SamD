@@ -22,7 +22,7 @@ public class ArraysLab3
 		assert (arr1.length == arr2.length);
 		
 		int[] sum = new int[arr1.length];
-		for(int element = 0; element < arr1.length;element++){
+		for(int element = 0; element < arr1.length-1;element++){
 			sum[element] = arr1[element] + arr2[element];
 		}
 		return sum;
