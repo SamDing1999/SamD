@@ -126,8 +126,8 @@ public class Calculate {
 	}
 	
 	//A method that returns the larger of two values passed
-	public static double max(double num1,double num2){
-		double answer = 0;
+	public static double max(int num1,int num2){
+		int answer = 0;
 		if(num1>num2){
 			answer = num1;
 		}else if(num2>num1){
