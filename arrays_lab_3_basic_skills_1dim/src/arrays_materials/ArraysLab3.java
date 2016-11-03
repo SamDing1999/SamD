@@ -38,9 +38,10 @@ public class ArraysLab3
 	public static int[] append(int[] arr, int num)
 	{
 		assert (arr.length > 0);
+		
 		int[] append = new int[arr.length+1];
-		for(int element: append){
-			if(element == arr.length+1){
+		for(int element = 0; element < arr.length+1; element++){
+			if(element == arr.length){
 				append[element] = num;
 			}else{
 				append[element] = arr[element];
@@ -53,19 +54,24 @@ public class ArraysLab3
 	/*
 	 * Write a method named remove that accepts an array of integers arr and an integer idx 
 	 * and returns an array of integers consisting of all of the elements of arr 
-	 * except for the element at index idx (thus, the returned array has a length of arr.length – 1).  
+	 * except for the element at index idx (thus, the returned array has a length of arr.length ï¿½ 1).  
 	 * You can assume arr has at least two elements.
 	 */
 	public static int[] remove(int[] arr, int idx)
 	{
 		assert (arr.length >= 2);
-		int[] remove = new int[arr.length-1];
-		for(int element : remove){
+		
+		int[] newArray = new int[arr.length-1];
+		for(int element = 0; element < arr.length ; element++){
 			if(element != idx){
-				remove[element] = arr[element];
+				if(element < idx){
+					newArray[element] = arr[element];
+				}else{
+					newArray[element-1] = arr[element];
+				}
 			}
 		}
-		return remove;
+		return newArray;
 		
 	}
 	
@@ -78,7 +84,7 @@ public class ArraysLab3
 	{
 		assert (arr.length > 0);
 		int sumEven = 0;
-		for(int i = 0; i < arr.length-1; i++){
+		for(int i = 0; i < arr.length; i++){
 			if(i%2 == 0){
 				sumEven += arr[i];
 			}
@@ -91,19 +97,19 @@ public class ArraysLab3
 	 * Write a method rotateRight that accepts an array of integers arr 
 	 * and does not return a value.  
 	 * The rotateRight method moves each element of arr one index to the right 
-	 * (element 0 goes to element 1, element 1 goes to element 2, …, element n-1 goes to element 0).  
+	 * (element 0 goes to element 1, element 1 goes to element 2, ï¿½, element n-1 goes to element 0).  
 	 * You can assume arr has at least one element.
 	 */
 	public static void rotateRight(int[] arr)
 	{
 		assert (arr.length > 0);
+		
 		int lastElement = arr[arr.length-1];
-		int[] rotateRight = new int[arr.length];
 		for(int i = arr.length-1; i >= 0; i--){
 			if(i==0){
-				rotateRight[i] = lastElement;
+				arr[0] = lastElement;
 			}else{
-				rotateRight[i] = arr[i-1];
+				arr[i] = arr[i-1];
 			}
 		}
 		
@@ -128,12 +134,27 @@ public class ArraysLab3
 				sumArr
 				appendArr
 				removeArr
-				sumOfEvens (an int you don’t need Arrays.toString)
+				sumOfEvens (an int you donï¿½t need Arrays.toString)
 				a1
 	 */
 	
 	public static void main(String[] args) 
 	{
+		int[] a1 = {5,10,15,20,25,30,35,40};
+		int[] a2 = {7,14,21,28,35,42,49,56};
+		int[] sumArr = ArraysLab3.sum(a1, a2);
+		int appendNum = 200;
+		int[] appendArr = ArraysLab3.append(a1,appendNum);
+		int removeIdx = 5;
+		int[] removeArr = ArraysLab3.remove(a2, removeIdx);
+		int sumOfEvens = ArraysLab3.sumEven(appendArr);
+		ArraysLab3.rotateRight(a1);
+		
+		System.out.println(Arrays.toString(sumArr));
+		System.out.println(Arrays.toString(appendArr));
+		System.out.println(Arrays.toString(removeArr));
+		System.out.println(sumOfEvens);
+		System.out.println(Arrays.toString(a1));
 		
 	}
 }
