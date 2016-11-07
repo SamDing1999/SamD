@@ -232,9 +232,13 @@ public class Calculate {
 	//A method that finds the greatest common factor of two integers
 	public static int gcf(int num1, int num2){
 		while(num2!=0){
-			int num3 = num1;
-			num1 = num2;
-			num2 = num3%num2;
+			if(Calculate.isDivisibleBy(num1, num2) == true){
+				num1 = num2;
+			}else{
+				int num3 = num1;
+				num1 = num2;
+				num2 = num3%num2;
+		    	}
 			}
 		return (int)Calculate.absValue(num1);
 	}
