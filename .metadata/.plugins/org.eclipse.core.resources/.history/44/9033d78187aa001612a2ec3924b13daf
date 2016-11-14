@@ -126,8 +126,8 @@ public class Calculate {
 	}
 	
 	//A method that returns the larger of two values passed
-	public static double max(double num1,double num2){
-		double answer = 0;
+	public static double max(int num1,int num2){
+		int answer = 0;
 		if(num1>num2){
 			answer = num1;
 		}else if(num2>num1){
@@ -232,9 +232,13 @@ public class Calculate {
 	//A method that finds the greatest common factor of two integers
 	public static int gcf(int num1, int num2){
 		while(num2!=0){
-			int num3 = num1;
-			num1 = num2;
-			num2 = num3%num2;
+			if(Calculate.isDivisibleBy(num1, num2) == true){
+				num1 = num2;
+			}else{
+				int num3 = num1;
+				num1 = num2;
+				num2 = num3%num2;
+		    	}
 			}
 		return (int)Calculate.absValue(num1);
 	}
