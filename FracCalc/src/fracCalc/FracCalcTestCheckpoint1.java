@@ -10,24 +10,22 @@ public class FracCalcTestCheckpoint1
     @Test public void testCheckpoint1_3() {FracCalcTestALL.assertForEarlyCheckpoints("27/21", "whole:0 numerator:27 denominator:21", "-33_2/7", FracCalc.produceAnswer("-32 - 27/21"));}
 	
     public static void main(String[] args){
-    	System.out.println(Arrays.toString("5_3/4 + 6_5/8".split(" ")));
+    	
     	Scanner input = new Scanner(System.in);
     	System.out.println("Please type in your calculation");
     	String fractionCalc = input.nextLine();
-    	produceAnswer(fractionCalc);
-    	System.out.println(fractionCalc);
+    	String answer = produceAnswer(fractionCalc);
+    	System.out.println(answer);
     	
     }
 	
 	public static String produceAnswer(String calculation){
-		
+		String answer;
 		String[] parts = calculation.split(" ");
 		parts[2] = parts[2].trim();
-		
-		
-		
-		return parts[2];
-		
+		String checkPointOne = parts[2];
+		answer = checkPointOne;
+		return answer;
 	}
 }
 	
