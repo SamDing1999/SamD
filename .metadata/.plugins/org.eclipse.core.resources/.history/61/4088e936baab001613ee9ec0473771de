@@ -44,20 +44,16 @@ public class FracCalcTestCheckpoint2
 		
 		if(numeratorPosi < 0 && denominatorPosi < 0){
 			whole  = parts[2];
-			numerator = "0";
-			denominator = "1";
+			checkPointTwo = whole;
 		}else if(denominatorPosi >= 0 && numeratorPosi <= 0){
 			numerator = parts[2].substring(0, denominatorPosi);
 			denominator = parts[2].substring(denominatorPosi+1);
-			whole = "0";
 		}else{
-			whole = parts[2].substring(0, numeratorPosi);
-			numerator = parts[2].substring(numeratorPosi+1, denominatorPosi);
-			denominator = parts[2].substring(denominatorPosi+1); 
+			
 		}
-		checkPointTwo = "whole:" + whole + " " + "numerator:" + numerator + " " + "denominator:" + denominator;
+		
 		//return all the outputs of both checkpoints
-		answer = checkPointTwo + ", "+checkPointOne;
+		answer = ;
 		return answer;
 	}
 	

@@ -57,7 +57,7 @@ public class FracCalcTestCheckpoint2
 		}
 		checkPointTwo = "whole:" + whole + " " + "numerator:" + numerator + " " + "denominator:" + denominator;
 		//return all the outputs of both checkpoints
-		answer = checkPointTwo + ", "+checkPointOne;
+		answer = checkPointTwo + checkPointOne;
 		return answer;
 	}
 	
