@@ -14,7 +14,6 @@ public class FracCalcTestCheckpoint2
 
 
     public static void main(String[] args){
-    	System.out.println(Arrays.toString("5_3/4 + 6_5/8".split(" ")));
     	Scanner input = new Scanner(System.in);
     	System.out.println("Please type in your calculation");
     	String fractionCalc = input.nextLine();
