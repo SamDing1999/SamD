@@ -11,21 +11,27 @@ public class FracCalcTestCheckpoint1
 	
     public static void main(String[] args){
     	
-    	Scanner input = new Scanner(System.in);
+    	Scanner userInput = new Scanner(System.in);
     	System.out.println("Please type in your calculation");
-    	String fractionCalc = input.nextLine();
+    	String fractionCalc = userInput.nextLine();
     	String answer = produceAnswer(fractionCalc);
     	System.out.println(answer);
     	
     }
 	
-	public static String produceAnswer(String calculation){
-		String answer;
-		String[] parts = calculation.split(" ");
-		parts[2] = parts[2].trim();
-		String checkPointOne = parts[2];
-		answer = checkPointOne;
-		return answer;
+	public static String produceAnswer(String input){
+		String firstOperand = new String();
+		String operator = new String();
+		String secondOperand = new String();
+		int firstSpace = input.indexOf(" ");
+    	int secondSpace = input.indexOf(" ", firstSpace + 2);
+    	operator = input.substring(firstSpace+1, secondSpace);
+    	firstOperand = input.substring(0, firstSpace);
+    	secondOperand = input.substring(secondSpace+1, input.length());
+    	
+    	return secondOperand;
+    	
+    	
 	}
 }
 	
