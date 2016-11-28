@@ -100,9 +100,5 @@ public class FracCalcTestCheckpoint3
 		}
 		return ("whole:" + whole + " " + "numerator:" + numerator + " " + "denominator:" + denominator);
     }
-    
-    //checkpoint 3:
-    public static String 
-
 
 }
