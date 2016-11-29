@@ -1,5 +1,5 @@
 package fracCalc;
-
+import java.util.*
 import org.junit.Test;
 
 // Checkpoint 3-only tests
@@ -33,9 +33,17 @@ public class FracCalcTestCheckpoint3
     @Test public void testCheckpoint3_DivisionCombined2() {FracCalcTestALL.assertForEarlyCheckpoints(null, null, "-2_2/3", FracCalc.produceAnswer("16/4 / -3/2"));}
     @Test public void testCheckpoint3_DivisionCombined3() {FracCalcTestALL.assertForEarlyCheckpoints(null, null, "6_661/5520", FracCalc.produceAnswer("-38_3/72 / -4_82/37"));}
 
+    public static void main(String[] args){
+    	Scanner userInput = new Scanner(System.in);
+    	System.out.println("Please type in the expression");
+    	String expression = userInput.nextLine();
+    	System.out.println(produceAnswer(expression));
+    	
+    }
+    
     public static String produceAnswer(String input){
-    	//checkpoint 1:
-		String firstOperand = new String();
+    	
+    	String firstOperand = new String();
 		String operator = new String();
 		String secondOperand = new String();
 		int firstSpace = input.indexOf(" ");
@@ -44,23 +52,18 @@ public class FracCalcTestCheckpoint3
     	firstOperand = input.substring(0, firstSpace);
     	secondOperand = input.substring(secondSpace+1, input.length());
     	
-
-		
-	 //checkpoint 3:
     	Stirng answer;
-		int[] componentOfFirstOperand = new int[3];
-		int[] componentOfSecondtOperand = new int[3];
-		
+    	
 		
 		if(operator == "+"){
 		//addition	
 			
-			
+		answer = addFrac();
 		
 		}else if(operator == "-"){
 		//subtraction
 			
-			
+		answer = 	
 			
 			
 		}else if(operator == "*"){
@@ -76,33 +79,37 @@ public class FracCalcTestCheckpoint3
 	
 }
 
-    //checkpoint 2:
-    public static String componentOfFraction(String operand){
-    	int numeratorPosi = operand.indexOf("_");
-		int denominatorPosi = operand.indexOf("/");
-		
-		String whole;
-		String numerator;
-		String denominator;
-		
-		if(numeratorPosi < 0 && denominatorPosi < 0){
-			whole  = operand;
-			numerator = "0";
-			denominator = "1";
-		}else if(denominatorPosi >= 0 && numeratorPosi <= 0){
-			numerator = operand.substring(0, denominatorPosi);
-			denominator = operand.substring(denominatorPosi+1);
-			whole = "0";
-		}else{
-			whole = operand.substring(0, numeratorPosi);
-			numerator = operand.substring(numeratorPosi+1, denominatorPosi);
-			denominator = operand.substring(denominatorPosi+1); 
-		}
-		return ("whole:" + whole + " " + "numerator:" + numerator + " " + "denominator:" + denominator);
-    }
+   
     
     //checkpoint 3:
-    public static String 
-
+    public static String[] parseOperand(String firstOperand, String secondOperand){
+    	String[] parseOfTwoOperands = new String[4];
+    	//firstOperand
+    	String[] parseOfFirst = new String[3];
+    	if(firstOperand.indexOf("_")>0){
+    		//mixed fraction
+    		parseOfFirst[0] = firstOperand.substring(0,firstOperand.indexOf("_"));
+    		parseOfFirst[1] = firstOperand.substring(firstOperand.indexOf("_")+1,firstOperand.indexOf("/"));
+    		parseOfFirst[2] = firstOperand.substring(firstOperand.indexOf("/")+1);
+    	}else if(firstOperand.indexOf("/")<0){
+    		//integers
+    		parseOfFirst[0] = firstOperand;
+    		parseOfFirst[1] = "0";
+    	    parseOfFirst[2] = "1";
+    	}else{
+    		//improperFraction
+    		parseOfFirst[0] = "0";
+    		parseOfFirst[1] = firstOperand.substring(0,firstOperand.indexOf("/"));
+    		parseOfFirst[2] = firstOperand.substring(firstOperand.indexOf("/")+1);
+    	}
+    	parseOfTwoOperands[0] = parseInt();
+    	parseOfTwoOperands[1] = 
+    	
+    	
+    	
+    	
+    	
+    	
+    }
 
 }
