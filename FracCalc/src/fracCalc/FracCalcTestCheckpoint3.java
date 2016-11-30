@@ -76,14 +76,14 @@ public class FracCalcTestCheckpoint3
 			
 		}
 	
-	
+	    return answer;
 }
 
    
     
     //checkpoint 3:
-    public static String[] parseOperand(String firstOperand, String secondOperand){
-    	String[] parseOfTwoOperands = new String[4];
+    public static int[] parseOperand(String firstOperand, String secondOperand){
+    	int[] parseOfTwoOperands = new int[4];
     	//firstOperand
     	String[] parseOfFirst = new String[3];
     	if(firstOperand.indexOf("_")>0){
@@ -102,14 +102,50 @@ public class FracCalcTestCheckpoint3
     		parseOfFirst[1] = firstOperand.substring(0,firstOperand.indexOf("/"));
     		parseOfFirst[2] = firstOperand.substring(firstOperand.indexOf("/")+1);
     	}
-    	parseOfTwoOperands[0] = parseInt();
-    	parseOfTwoOperands[1] = 
+    	parseOfTwoOperands[0] = Integer.parseInt(parseOfFirst[0]) + Integer.parseInt(parseOfFirst[1]);
+    	parseOfTwoOperands[1] = Integer.parseInt(parseOfFirst[2]);
     	
+    	//secondOperand
+    	//firstOperand
+    	String[] parseOfSecond = new String[3];
+    	if(firstOperand.indexOf("_")>0){
+    		//mixed fraction
+    		parseOfSecond[0] = secondOperand.substring(0,secondOperand.indexOf("_"));
+    		parseOfSecond[1] = secondOperand.substring(secondOperand.indexOf("_")+1,secondOperand.indexOf("/"));
+    		parseOfSecond[2] = secondOperand.substring(secondOperand.indexOf("/")+1);
+    	}else if(firstOperand.indexOf("/")<0){
+    		//integers
+    		parseOfSecond[0] = secondOperand;
+    		parseOfSecond[1] = "0";
+    		parseOfSecond[2] = "1";
+    	}else{
+    		//improperFraction
+    		parseOfSecond[0] = "0";
+    		parseOfSecond[1] = secondOperand.substring(0,secondOperand.indexOf("/"));
+    		parseOfSecond[2] = secondOperand.substring(secondOperand.indexOf("/")+1);
+    	}
+    	parseOfTwoOperands[2] = Integer.parseInt(parseOfSecond[0]) + Integer.parseInt(parseOfSecond[1]);
+    	parseOfTwoOperands[3] = Integer.parseInt(parseOfSecond[2]);
     	
+    	return parseOfTwoOperands;
     	
+    }
+    
+    
+    
+    public static String addFrac(int[] parseOfTwoOperands){
+    	int numeratorOne = parseOfTwoOperands[0];
+    	int denominatorOne = parseOfTwoOperands[1];
+    	int numeratorTwo = parseOfTwoOperands[2];
+    	int denominatorTwo = parseOfTwoOperands[3];
+    	
+    	String answer = numeratorOne*denominatorTwo + "/";
     	
     	
     	
     }
+    
+    
+    
 
 }
