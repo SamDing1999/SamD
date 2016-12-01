@@ -1,5 +1,5 @@
 package fracCalc;
-import java.util.*
+import java.util.*;
 import org.junit.Test;
 
 // Checkpoint 3-only tests
@@ -35,9 +35,13 @@ public class FracCalcTestCheckpoint3
 
     public static void main(String[] args){
     	Scanner userInput = new Scanner(System.in);
-    	System.out.println("Please type in the expression");
-    	String expression = userInput.nextLine();
-    	System.out.println(produceAnswer(expression));
+    	System.out.println("Enter your operation.");
+    	String input = userInput.nextLine();
+    	while (input.equals("quit")){
+    		String answer=produceAnswer(input);
+    		System.out.println(answer);
+    	}
+    	produceAnswer(input);
     	
     }
     
@@ -52,29 +56,19 @@ public class FracCalcTestCheckpoint3
     	firstOperand = input.substring(0, firstSpace);
     	secondOperand = input.substring(secondSpace+1, input.length());
     	
-    	Stirng answer;
-    	
-		
+    	String answer;
+
+	
 		if(operator == "+"){
-		//addition	
-			
-		answer = addFrac();
-		
+		answer = addFrac(parseOperand(firstOperand, secondOperand));
 		}else if(operator == "-"){
-		//subtraction
-			
-		answer = 	
-			
 			
 		}else if(operator == "*"){
-		//multiplication
-			
-			
 			
 		}else if(operator == "/"){
-		//division
-			
+		
 		}
+		
 	
 	    return answer;
 }
@@ -85,47 +79,47 @@ public class FracCalcTestCheckpoint3
     public static int[] parseOperand(String firstOperand, String secondOperand){
     	int[] parseOfTwoOperands = new int[4];
     	//firstOperand
-    	String[] parseOfFirst = new String[3];
+    	int[] parseOfFirst = new int[3];
     	if(firstOperand.indexOf("_")>0){
     		//mixed fraction
-    		parseOfFirst[0] = firstOperand.substring(0,firstOperand.indexOf("_"));
-    		parseOfFirst[1] = firstOperand.substring(firstOperand.indexOf("_")+1,firstOperand.indexOf("/"));
-    		parseOfFirst[2] = firstOperand.substring(firstOperand.indexOf("/")+1);
+    		parseOfFirst[0] = Integer.parseInt(firstOperand.substring(0,firstOperand.indexOf("_")));
+    		parseOfFirst[1] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("_")+1,firstOperand.indexOf("/")));
+    		parseOfFirst[2] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("/")+1));
     	}else if(firstOperand.indexOf("/")<0){
     		//integers
-    		parseOfFirst[0] = firstOperand;
-    		parseOfFirst[1] = "0";
-    	    parseOfFirst[2] = "1";
+    		parseOfFirst[0] = Integer.parseInt(firstOperand);
+    		parseOfFirst[1] = 0;
+    	    parseOfFirst[2] = 1;
     	}else{
     		//improperFraction
-    		parseOfFirst[0] = "0";
-    		parseOfFirst[1] = firstOperand.substring(0,firstOperand.indexOf("/"));
-    		parseOfFirst[2] = firstOperand.substring(firstOperand.indexOf("/")+1);
+    		parseOfFirst[0] = 0;
+    		parseOfFirst[1] = Integer.parseInt(firstOperand.substring(0,firstOperand.indexOf("/")));
+    		parseOfFirst[2] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("/")+1));
     	}
-    	parseOfTwoOperands[0] = Integer.parseInt(parseOfFirst[0]) + Integer.parseInt(parseOfFirst[1]);
-    	parseOfTwoOperands[1] = Integer.parseInt(parseOfFirst[2]);
+    	parseOfTwoOperands[0] = parseOfFirst[0] + parseOfFirst[1];
+    	parseOfTwoOperands[1] = parseOfFirst[2];
     	
     	//secondOperand
     	//firstOperand
-    	String[] parseOfSecond = new String[3];
+    	int[] parseOfSecond = new int[3];
     	if(firstOperand.indexOf("_")>0){
     		//mixed fraction
-    		parseOfSecond[0] = secondOperand.substring(0,secondOperand.indexOf("_"));
-    		parseOfSecond[1] = secondOperand.substring(secondOperand.indexOf("_")+1,secondOperand.indexOf("/"));
-    		parseOfSecond[2] = secondOperand.substring(secondOperand.indexOf("/")+1);
+    		parseOfSecond[0] = Integer.parseInt(secondOperand.substring(0,secondOperand.indexOf("_")));
+    		parseOfSecond[1] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("_")+1,secondOperand.indexOf("/")));
+    		parseOfSecond[2] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("/")+1));
     	}else if(firstOperand.indexOf("/")<0){
     		//integers
-    		parseOfSecond[0] = secondOperand;
-    		parseOfSecond[1] = "0";
-    		parseOfSecond[2] = "1";
+    		parseOfSecond[0] = Integer.parseInt(secondOperand);
+    		parseOfSecond[1] = 0;
+    		parseOfSecond[2] = 1;
     	}else{
     		//improperFraction
-    		parseOfSecond[0] = "0";
-    		parseOfSecond[1] = secondOperand.substring(0,secondOperand.indexOf("/"));
-    		parseOfSecond[2] = secondOperand.substring(secondOperand.indexOf("/")+1);
+    		parseOfSecond[0] = 0;
+    		parseOfSecond[1] = Integer.parseInt(secondOperand.substring(0,secondOperand.indexOf("/")));
+    		parseOfSecond[2] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("/")+1));
     	}
-    	parseOfTwoOperands[2] = Integer.parseInt(parseOfSecond[0]) + Integer.parseInt(parseOfSecond[1]);
-    	parseOfTwoOperands[3] = Integer.parseInt(parseOfSecond[2]);
+    	parseOfTwoOperands[2] = parseOfSecond[0] + parseOfSecond[1];
+    	parseOfTwoOperands[3] = parseOfSecond[2];
     	
     	return parseOfTwoOperands;
     	
@@ -139,9 +133,9 @@ public class FracCalcTestCheckpoint3
     	int numeratorTwo = parseOfTwoOperands[2];
     	int denominatorTwo = parseOfTwoOperands[3];
     	
-    	String answer = numeratorOne*denominatorTwo + "/";
+    	String answer = numeratorOne*denominatorTwo + "/" + numeratorTwo*denominatorOne;
     	
-    	
+    	return answer;
     	
     }
     
