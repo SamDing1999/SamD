@@ -36,12 +36,11 @@ public class FracCalcTestCheckpoint3
     public static void main(String[] args){
     	Scanner userInput = new Scanner(System.in);
     	System.out.println("Enter your operation.");
-    	String input = userInput.nextLine();
-    	while (input.equals("quit")){
-    		String answer=produceAnswer(input);
+    	String expression = userInput.nextLine();
+    	while (expression.equals("quit")){
+    		String answer = produceAnswer(expression);
     		System.out.println(answer);
     	}
-    	produceAnswer(input);
     	
     }
     
@@ -60,13 +59,15 @@ public class FracCalcTestCheckpoint3
 
 	
 		if(operator == "+"){
-		answer = addFrac(parseOperand(firstOperand, secondOperand));
+			answer = addFrac(parseOperand(firstOperand, secondOperand));
 		}else if(operator == "-"){
-			
+			answer = subtractFrac(parseOperand(firstOperand, secondOperand));
 		}else if(operator == "*"){
-			
+			answer = multiplyFrac(parseOperand(firstOperand, secondOperand));
 		}else if(operator == "/"){
-		
+			answer = divideFrac(parseOperand(firstOperand, secondOperand));
+		}else{
+			answer = "Please check your expression";
 		}
 		
 	
@@ -133,10 +134,42 @@ public class FracCalcTestCheckpoint3
     	int numeratorTwo = parseOfTwoOperands[2];
     	int denominatorTwo = parseOfTwoOperands[3];
     	
-    	String answer = numeratorOne*denominatorTwo + "/" + numeratorTwo*denominatorOne;
+    	String answer = Calculate.toMixedNum(numeratorOne*denominatorTwo+numeratorTwo*denominatorOne,denominatorOne*denominatorTwo);
     	
     	return answer;
     	
+    }
+    
+    public static String subtractFrac(int[] parseOfTwoOperands){
+    	int numeratorOne = parseOfTwoOperands[0];
+    	int denominatorOne = parseOfTwoOperands[1];
+    	int numeratorTwo = parseOfTwoOperands[2];
+    	int denominatorTwo = parseOfTwoOperands[3];
+    	
+    	String answer = Calculate.toMixedNum(numeratorOne*denominatorTwo+numeratorTwo*denominatorOne, denominatorOne*denominatorTwo);
+    	
+    	return answer;
+    }
+    
+    public static String multiplyFrac(int[] parseOfTwoOperands){
+    	int numeratorOne = parseOfTwoOperands[0];
+    	int denominatorOne = parseOfTwoOperands[1];
+    	int numeratorTwo = parseOfTwoOperands[2];
+    	int denominatorTwo = parseOfTwoOperands[3];
+        
+        String answer = Calculate.toMixedNum(numeratorOne*numeratorTwo,denominatorOne*denominatorTwo);
+        return answer;
+    }
+    
+    public static String divideFrac(int[] parseOfTwoOperands){
+    	int numeratorOne = parseOfTwoOperands[0];
+    	int denominatorOne = parseOfTwoOperands[1];
+    	int numeratorTwo = parseOfTwoOperands[2];
+    	int denominatorTwo = parseOfTwoOperands[3];
+    	
+    	String answer = Calculate.toMixedNum(numeratorOne*denominatorTwo, numeratorTwo*denominatorOne);
+    	
+    	return answer;
     }
     
     
