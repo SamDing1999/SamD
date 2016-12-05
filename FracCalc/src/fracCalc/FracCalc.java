@@ -9,10 +9,13 @@ public class FracCalc {
         // TODO: Read the input from the user and call produceAnswer with an equation
     	Scanner userInput = new Scanner(System.in);
     	System.out.println("Enter your operation.");
-    	String input = userInput.nextLine();
-    	while(input!=("quit")){
-    		String answer=produceAnswer(input);
+    	String expression = userInput.nextLine();
+    	while (expression!=("quit")){
+    		
+    		String answer = produceAnswer(expression);
     		System.out.println(answer);
+    		System.out.println("Enter your operation.");
+    		expression = userInput.nextLine();
     	}
     }
     
@@ -31,16 +34,152 @@ public class FracCalc {
 		String operator = new String();
 		String secondOperand = new String();
 		int firstSpace = input.indexOf(" ");
-    	int secondSpace = input.indexOf(" ", firstSpace + 2);
+    	int secondSpace = input.indexOf(" ", firstSpace + 1);
     	operator = input.substring(firstSpace+1, secondSpace);
     	firstOperand = input.substring(0, firstSpace);
     	secondOperand = input.substring(secondSpace+1, input.length());
     	
-    	return componentOfFraction(secondOperand);
+    	//return componentOfFraction(secondOperand);
+
+    	String answer;
+    	boolean negativeSign;
+    	if(input.substring(0,1).equals("-")){
+    		negativeSign = true;
+    	}else{
+    		negativeSign = false;
+    	}
+
+	
+		if(operator.equals("+")){
+			//addition
+			answer = addFrac(parseOperand(firstOperand, secondOperand),negativeSign);
+		}else if(operator.equals("-")){
+			//subtraction
+			answer = subtractFrac(parseOperand(firstOperand, secondOperand),negativeSign);
+		}else if(operator.equals("*")){
+			//multiplication
+			answer = multiplyFrac(parseOperand(firstOperand, secondOperand),negativeSign);
+		}else if(operator.equals("/")){
+			//division
+			answer = divideFrac(parseOperand(firstOperand, secondOperand),negativeSign);
+		}else{
+			answer = "Please check your expression";
+		}
+		
+	
+	    return answer;
+}
+
+   
+    
+    //checkpoint 3:
+    public static int[] parseOperand(String firstOperand, String secondOperand){
+    	int[] parseOfTwoOperands = new int[4];
+    	//firstOperand
+    	int[] parseOfFirst = new int[3];
+    	if(firstOperand.indexOf("_")>0){
+    		//mixed fraction
+    		parseOfFirst[0] = Integer.parseInt(firstOperand.substring(0,firstOperand.indexOf("_")));
+    		parseOfFirst[1] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("_")+1,firstOperand.indexOf("/")));
+    		parseOfFirst[2] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("/")+1));
+    	}else if(firstOperand.indexOf("/")<0){
+    		//integers
+    		parseOfFirst[0] = Integer.parseInt(firstOperand);
+    		parseOfFirst[1] = 0;
+    	    parseOfFirst[2] = 1;
+    	}else{
+    		//improperFraction
+    		parseOfFirst[0] = 0;
+    		parseOfFirst[1] = Integer.parseInt(firstOperand.substring(0,firstOperand.indexOf("/")));
+    		parseOfFirst[2] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("/")+1));
+    	}
+    	parseOfTwoOperands[0] = (parseOfFirst[0]*parseOfFirst[2]) + parseOfFirst[1];
+    	parseOfTwoOperands[1] = parseOfFirst[2];
     	
-
-
+    	//secondOperand
+    	//firstOperand
+    	int[] parseOfSecond = new int[3];
+    	if(firstOperand.indexOf("_")>0){
+    		//mixed fraction
+    		parseOfSecond[0] = Integer.parseInt(secondOperand.substring(0,secondOperand.indexOf("_")));
+    		parseOfSecond[1] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("_")+1,secondOperand.indexOf("/")));
+    		parseOfSecond[2] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("/")+1));
+    	}else if(firstOperand.indexOf("/")<0){
+    		//integers
+    		parseOfSecond[0] = Integer.parseInt(secondOperand);
+    		parseOfSecond[1] = 0;
+    		parseOfSecond[2] = 1;
+    	}else{
+    		//improperFraction
+    		parseOfSecond[0] = 0;
+    		parseOfSecond[1] = Integer.parseInt(secondOperand.substring(0,secondOperand.indexOf("/")));
+    		parseOfSecond[2] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("/")+1));
+    	}
+    	parseOfTwoOperands[2] = (parseOfSecond[0]*parseOfSecond[2])+ parseOfSecond[1];
+    	parseOfTwoOperands[3] = parseOfSecond[2];
+    	
+    	return parseOfTwoOperands;
+    	
     }
+    
+    //four calculation
+    
+    public static String addFrac(int[] parseOfTwoOperands, boolean negativeSign){
+    	int numeratorOne = parseOfTwoOperands[0];
+    	int denominatorOne = parseOfTwoOperands[1];
+    	int numeratorTwo = parseOfTwoOperands[2];
+    	int denominatorTwo = parseOfTwoOperands[3];
+    	
+    	String answer = Calculate.toMixedNum(numeratorOne*denominatorTwo+numeratorTwo*denominatorOne,denominatorOne*denominatorTwo);
+    
+    	
+    	return answer;
+    	
+    }
+    
+    public static String subtractFrac(int[] parseOfTwoOperands, boolean negativeSign){
+    	int numeratorOne = parseOfTwoOperands[0];
+    	int denominatorOne = parseOfTwoOperands[1];
+    	int numeratorTwo = parseOfTwoOperands[2];
+    	int denominatorTwo = parseOfTwoOperands[3];
+    	
+    	String answer = Calculate.toMixedNum(numeratorOne*denominatorTwo+numeratorTwo*denominatorOne, denominatorOne*denominatorTwo);
+   
+    	return answer;
+    }
+    
+    public static String multiplyFrac(int[] parseOfTwoOperands, boolean negativeSign){
+    	int numeratorOne = parseOfTwoOperands[0];
+    	int denominatorOne = parseOfTwoOperands[1];
+    	int numeratorTwo = parseOfTwoOperands[2];
+    	int denominatorTwo = parseOfTwoOperands[3];
+        
+        String answer = Calculate.toMixedNum(numeratorOne*numeratorTwo,denominatorOne*denominatorTwo);
+        
+        
+        return answer;
+    }
+    
+    public static String divideFrac(int[] parseOfTwoOperands, boolean negativeSign){
+    	int numeratorOne = parseOfTwoOperands[0];
+    	int denominatorOne = parseOfTwoOperands[1];
+    	int numeratorTwo = parseOfTwoOperands[2];
+    	int denominatorTwo = parseOfTwoOperands[3];
+    	
+    	String answer = Calculate.toMixedNum(numeratorOne*denominatorTwo, numeratorTwo*denominatorOne);
+    	
+  
+    	return answer;
+    }
+    
+    
+    
+
+
+
+
+
+    
     	
     
 

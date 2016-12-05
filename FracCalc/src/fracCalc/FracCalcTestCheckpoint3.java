@@ -60,22 +60,34 @@ public class FracCalcTestCheckpoint3
     	secondOperand = input.substring(secondSpace+1, input.length());
     	
     	String answer;
-    	boolean negativeSign;
-    	if(input.substring(0,1).equals("-")){
-    		negativeSign = true;
+    	//determine whether the operands are negative or positive
+    	boolean firstNegativeSign;
+    	if(firstOperand.indexOf("-")>0){
+    		firstNegativeSign = true;
     	}else{
-    		negativeSign = false;
+    		firstNegativeSign = false;
+    	}
+    	
+    	boolean secondNegativeSign;
+    	if(secondOperand.indexOf("-")>0){
+    		secondNegativeSign = true;
+    	}else{
+    		secondNegativeSign = false;
     	}
 
 	
 		if(operator.equals("+")){
-			answer = addFrac(parseOperand(firstOperand, secondOperand),negativeSign);
+			//addition
+			answer = addFrac(parseOperand(firstOperand, secondOperand),firstNegativeSign,secondNegativeSign);
 		}else if(operator.equals("-")){
-			answer = subtractFrac(parseOperand(firstOperand, secondOperand),negativeSign);
+			//subtraction
+			answer = subtractFrac(parseOperand(firstOperand, secondOperand),firstNegativeSign,secondNegativeSign);
 		}else if(operator.equals("*")){
-			answer = multiplyFrac(parseOperand(firstOperand, secondOperand),negativeSign);
+			//multiplication
+			answer = multiplyFrac(parseOperand(firstOperand, secondOperand),firstNegativeSign,secondNegativeSign);
 		}else if(operator.equals("/")){
-			answer = divideFrac(parseOperand(firstOperand, secondOperand),negativeSign);
+			//division
+			answer = divideFrac(parseOperand(firstOperand, secondOperand),firstNegativeSign,secondNegativeSign);
 		}else{
 			answer = "Please check your expression";
 		}
@@ -91,6 +103,16 @@ public class FracCalcTestCheckpoint3
     	int[] parseOfTwoOperands = new int[4];
     	//firstOperand
     	int[] parseOfFirst = new int[3];
+    	
+    	//turn two fractions into positive numbers
+    	if(firstOperand.indexOf("-")>0){
+    		firstOperand = firstOperand.substring(1);
+    	}
+    	if(secondOperand.indexOf("-")>0){
+    		secondOperand = secondOperand.substring(1);
+    	}
+    	
+    	
     	if(firstOperand.indexOf("_")>0){
     		//mixed fraction
     		parseOfFirst[0] = Integer.parseInt(firstOperand.substring(0,firstOperand.indexOf("_")));
@@ -138,49 +160,53 @@ public class FracCalcTestCheckpoint3
     
     
     
-    public static String addFrac(int[] parseOfTwoOperands, boolean negativeSign){
+    public static String addFrac(int[] parseOfTwoOperands, boolean firstNegativeSign,boolean secondNegativeSign){
+    	String answer;
     	int numeratorOne = parseOfTwoOperands[0];
     	int denominatorOne = parseOfTwoOperands[1];
     	int numeratorTwo = parseOfTwoOperands[2];
     	int denominatorTwo = parseOfTwoOperands[3];
     	
-    	String answer = Calculate.toMixedNum(numeratorOne*denominatorTwo+numeratorTwo*denominatorOne,denominatorOne*denominatorTwo);
+    	answer = Calculate.toMixedNum(numeratorOne*denominatorTwo+numeratorTwo*denominatorOne,denominatorOne*denominatorTwo);
     
     	
     	return answer;
     	
     }
     
-    public static String subtractFrac(int[] parseOfTwoOperands, boolean negativeSign){
+    public static String subtractFrac(int[] parseOfTwoOperands, boolean firstNegativeSign,boolean secondNegativeSign){
+    	String answer;
     	int numeratorOne = parseOfTwoOperands[0];
     	int denominatorOne = parseOfTwoOperands[1];
     	int numeratorTwo = parseOfTwoOperands[2];
     	int denominatorTwo = parseOfTwoOperands[3];
     	
-    	String answer = Calculate.toMixedNum(numeratorOne*denominatorTwo+numeratorTwo*denominatorOne, denominatorOne*denominatorTwo);
+    	answer = Calculate.toMixedNum(numeratorOne*denominatorTwo+numeratorTwo*denominatorOne, denominatorOne*denominatorTwo);
    
     	return answer;
     }
     
-    public static String multiplyFrac(int[] parseOfTwoOperands, boolean negativeSign){
+    public static String multiplyFrac(int[] parseOfTwoOperands,boolean firstNegativeSign,boolean secondNegativeSign){
+    	String answer;
     	int numeratorOne = parseOfTwoOperands[0];
     	int denominatorOne = parseOfTwoOperands[1];
     	int numeratorTwo = parseOfTwoOperands[2];
     	int denominatorTwo = parseOfTwoOperands[3];
         
-        String answer = Calculate.toMixedNum(numeratorOne*numeratorTwo,denominatorOne*denominatorTwo);
+        answer = Calculate.toMixedNum(numeratorOne*numeratorTwo,denominatorOne*denominatorTwo);
         
         
         return answer;
     }
     
-    public static String divideFrac(int[] parseOfTwoOperands, boolean negativeSign){
+    public static String divideFrac(int[] parseOfTwoOperands,boolean firstNegativeSign,boolean secondNegativeSign){
+    	String answer;
     	int numeratorOne = parseOfTwoOperands[0];
     	int denominatorOne = parseOfTwoOperands[1];
     	int numeratorTwo = parseOfTwoOperands[2];
     	int denominatorTwo = parseOfTwoOperands[3];
     	
-    	String answer = Calculate.toMixedNum(numeratorOne*denominatorTwo, numeratorTwo*denominatorOne);
+    	answer = Calculate.toMixedNum(numeratorOne*denominatorTwo, numeratorTwo*denominatorOne);
     	
   
     	return answer;
