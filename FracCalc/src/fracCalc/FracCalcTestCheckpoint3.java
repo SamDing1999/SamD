@@ -34,7 +34,7 @@ public class FracCalcTestCheckpoint3
     @Test public void testCheckpoint3_DivisionCombined3() {FracCalcTestALL.assertForEarlyCheckpoints(null, null, "6_661/5520", FracCalc.produceAnswer("-38_3/72 / -4_82/37"));}
 
     public static void main(String[] args){
-    	
+    
     	Scanner userInput = new Scanner(System.in);
     	System.out.println("Enter your operation.");
     	String expression = userInput.nextLine();
@@ -60,34 +60,21 @@ public class FracCalcTestCheckpoint3
     	secondOperand = input.substring(secondSpace+1, input.length());
     	
     	String answer;
-    	//determine whether the operands are negative or positive
-    	boolean firstNegativeSign;
-    	if(firstOperand.indexOf("-")>0){
-    		firstNegativeSign = true;
-    	}else{
-    		firstNegativeSign = false;
-    	}
-    	
-    	boolean secondNegativeSign;
-    	if(secondOperand.indexOf("-")>0){
-    		secondNegativeSign = true;
-    	}else{
-    		secondNegativeSign = false;
-    	}
+    
 
 	
 		if(operator.equals("+")){
 			//addition
-			answer = addFrac(parseOperand(firstOperand, secondOperand),firstNegativeSign,secondNegativeSign);
+			answer = addFrac(parseOperand(firstOperand, secondOperand));
 		}else if(operator.equals("-")){
 			//subtraction
-			answer = subtractFrac(parseOperand(firstOperand, secondOperand),firstNegativeSign,secondNegativeSign);
+			answer = subtractFrac(parseOperand(firstOperand, secondOperand));
 		}else if(operator.equals("*")){
 			//multiplication
-			answer = multiplyFrac(parseOperand(firstOperand, secondOperand),firstNegativeSign,secondNegativeSign);
+			answer = multiplyFrac(parseOperand(firstOperand, secondOperand));
 		}else if(operator.equals("/")){
 			//division
-			answer = divideFrac(parseOperand(firstOperand, secondOperand),firstNegativeSign,secondNegativeSign);
+			answer = divideFrac(parseOperand(firstOperand, secondOperand));
 		}else{
 			answer = "Please check your expression";
 		}
@@ -104,13 +91,7 @@ public class FracCalcTestCheckpoint3
     	//firstOperand
     	int[] parseOfFirst = new int[3];
     	
-    	//turn two fractions into positive numbers if they were negative
-    	if(firstOperand.indexOf("-")>0){
-    		firstOperand = firstOperand.substring(1);
-    	}
-    	if(secondOperand.indexOf("-")>0){
-    		secondOperand = secondOperand.substring(1);
-    	}
+    
     	
     	
     	if(firstOperand.indexOf("_")>0){
@@ -129,11 +110,14 @@ public class FracCalcTestCheckpoint3
     		parseOfFirst[1] = Integer.parseInt(firstOperand.substring(0,firstOperand.indexOf("/")));
     		parseOfFirst[2] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("/")+1));
     	}
-    	parseOfTwoOperands[0] = (parseOfFirst[0]*parseOfFirst[2]) + parseOfFirst[1];
+    	if(parseOfFirst[0] >= 0){
+    		parseOfTwoOperands[0] = (parseOfFirst[0]*parseOfFirst[2]) + parseOfFirst[1];
+    	}else{
+    		parseOfTwoOperands[0] = (parseOfFirst[0]*parseOfFirst[2]) - parseOfFirst[1];    	
+    	}
     	parseOfTwoOperands[1] = parseOfFirst[2];
-    	
     	//secondOperand
-    	//firstOperand
+
     	int[] parseOfSecond = new int[3];
     	if(firstOperand.indexOf("_")>0){
     		//mixed fraction
@@ -151,7 +135,12 @@ public class FracCalcTestCheckpoint3
     		parseOfSecond[1] = Integer.parseInt(secondOperand.substring(0,secondOperand.indexOf("/")));
     		parseOfSecond[2] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("/")+1));
     	}
-    	parseOfTwoOperands[2] = (parseOfSecond[0]*parseOfSecond[2])+ parseOfSecond[1];
+    	
+    	if(parseOfSecond[0]>=0){
+    		parseOfTwoOperands[2] = (parseOfSecond[0]*parseOfSecond[2])+ parseOfSecond[1];
+    	}else{
+    		parseOfTwoOperands[2] = (parseOfSecond[0]*parseOfSecond[2])- parseOfSecond[1];
+    	}
     	parseOfTwoOperands[3] = parseOfSecond[2];
     	
     	return parseOfTwoOperands;
@@ -160,7 +149,7 @@ public class FracCalcTestCheckpoint3
     
     
     
-    public static String addFrac(int[] parseOfTwoOperands, boolean firstNegativeSign,boolean secondNegativeSign){
+    public static String addFrac(int[] parseOfTwoOperands){
     	String answer;
     	int numeratorOne = parseOfTwoOperands[0];
     	int denominatorOne = parseOfTwoOperands[1];
@@ -169,6 +158,9 @@ public class FracCalcTestCheckpoint3
     	
     	int numerator = numeratorOne*denominatorTwo+numeratorTwo*denominatorOne;
     	int denominator	= denominatorOne*denominatorTwo;
+    	
+    	
+    	
     	int gcf = Calculate.gcf(numerator, denominator);
     	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
     	
@@ -176,19 +168,22 @@ public class FracCalcTestCheckpoint3
     	
     }
     
-    public static String subtractFrac(int[] parseOfTwoOperands, boolean firstNegativeSign,boolean secondNegativeSign){
+    public static String subtractFrac(int[] parseOfTwoOperands){
     	String answer;
     	int numeratorOne = parseOfTwoOperands[0];
     	int denominatorOne = parseOfTwoOperands[1];
     	int numeratorTwo = parseOfTwoOperands[2];
     	int denominatorTwo = parseOfTwoOperands[3];
     	
-    	answer = Calculate.toMixedNum(numeratorOne*denominatorTwo+numeratorTwo*denominatorOne, denominatorOne*denominatorTwo);
-   
+    	int numerator = numeratorOne*denominatorTwo-numeratorTwo*denominatorOne;
+    	int denominator =  denominatorOne*denominatorTwo;
+    	
+    	int gcf = Calculate.gcf(numerator, denominator);
+    	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
     	return answer;
     }
     
-    public static String multiplyFrac(int[] parseOfTwoOperands,boolean firstNegativeSign,boolean secondNegativeSign){
+    public static String multiplyFrac(int[] parseOfTwoOperands){
     	String answer;
     	int numeratorOne = parseOfTwoOperands[0];
     	int denominatorOne = parseOfTwoOperands[1];
@@ -201,7 +196,7 @@ public class FracCalcTestCheckpoint3
         return answer;
     }
     
-    public static String divideFrac(int[] parseOfTwoOperands,boolean firstNegativeSign,boolean secondNegativeSign){
+    public static String divideFrac(int[] parseOfTwoOperands){
     	String answer;
     	int numeratorOne = parseOfTwoOperands[0];
     	int denominatorOne = parseOfTwoOperands[1];

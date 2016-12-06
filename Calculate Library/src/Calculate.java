@@ -83,7 +83,8 @@ public class Calculate {
 		}else if(numerator%denom == 0){
 			answer = (""+numerator/denom);
 		}else{
-			answer = ((numerator-(numerator%denom))/denom+"_"+(numerator%denom)+"/"+denom);
+				answer = ((numerator-(numerator%denom))/denom+"_"+(Calculate.absValue(numerator%denom))+"/"+denom);
+			
 		}
 		return answer;
 	}

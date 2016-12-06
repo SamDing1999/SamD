@@ -24,12 +24,12 @@ public class FracCalcTestCheckpoint1
 		String operator = new String();
 		String secondOperand = new String();
 		int firstSpace = input.indexOf(" ");
-    	int secondSpace = input.indexOf(" ", firstSpace + 2);
+    	int secondSpace = input.indexOf(" ", firstSpace + 1);
     	operator = input.substring(firstSpace+1, secondSpace);
     	firstOperand = input.substring(0, firstSpace);
     	secondOperand = input.substring(secondSpace+1, input.length());
     	
-    	return secondOperand;
+    	return (secondOperand);
     	
     	
 	}

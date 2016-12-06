@@ -17,9 +17,10 @@ public class FracCalcTestCheckpoint2
     	Scanner userInput = new Scanner(System.in);
     	System.out.println("Enter your operation.");
     	String input = userInput.nextLine();
-    	if (input.equals("quit")){
+    	while (input!=("quit")){
     		String answer=produceAnswer(input);
     		System.out.println(answer);
+    		input = userInput.nextLine();
     	}
     	produceAnswer(input);
     	
