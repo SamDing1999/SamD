@@ -42,7 +42,7 @@ public class FracCalcTestCheckpoint3
     		
     		String answer = produceAnswer(expression);
     		System.out.println(answer);
-    		System.out.println("Enter your operation.");
+    		System.out.println("\nEnter your operation:");
     		expression = userInput.nextLine();
     	}
     	
@@ -104,7 +104,7 @@ public class FracCalcTestCheckpoint3
     	//firstOperand
     	int[] parseOfFirst = new int[3];
     	
-    	//turn two fractions into positive numbers
+    	//turn two fractions into positive numbers if they were negative
     	if(firstOperand.indexOf("-")>0){
     		firstOperand = firstOperand.substring(1);
     	}
@@ -167,8 +167,10 @@ public class FracCalcTestCheckpoint3
     	int numeratorTwo = parseOfTwoOperands[2];
     	int denominatorTwo = parseOfTwoOperands[3];
     	
-    	answer = Calculate.toMixedNum(numeratorOne*denominatorTwo+numeratorTwo*denominatorOne,denominatorOne*denominatorTwo);
-    
+    	int numerator = numeratorOne*denominatorTwo+numeratorTwo*denominatorOne;
+    	int denominator	= denominatorOne*denominatorTwo;
+    	int gcf = Calculate.gcf(numerator, denominator);
+    	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
     	
     	return answer;
     	
