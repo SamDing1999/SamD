@@ -34,8 +34,7 @@ public class FracCalcTestCheckpoint3
     @Test public void testCheckpoint3_DivisionCombined3() {FracCalcTestALL.assertForEarlyCheckpoints(null, null, "6_661/5520", FracCalc.produceAnswer("-38_3/72 / -4_82/37"));}
 
     public static void main(String[] args){
-    	//int s = Calculate.gcf(-24,3);
-    	//System.out.println(Calculate.toMixedNum(-24/s,3/s));
+    	
     	Scanner userInput = new Scanner(System.in);
     	System.out.println("Enter your operation.");
     	String expression = userInput.nextLine();
@@ -97,7 +96,7 @@ public class FracCalcTestCheckpoint3
     		parseOfFirst[0] = Integer.parseInt(firstOperand.substring(0,firstOperand.indexOf("_")));
     		parseOfFirst[1] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("_")+1,firstOperand.indexOf("/")));
     		parseOfFirst[2] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("/")+1));
-    	}else if(firstOperand.indexOf("/")>0){
+    	}else if(firstOperand.indexOf("/")>0&&firstOperand.indexOf("_")<0){
     		//improperFraction
     		parseOfFirst[0] = 0;
     		parseOfFirst[1] = Integer.parseInt(firstOperand.substring(0,firstOperand.indexOf("/")));
@@ -122,7 +121,7 @@ public class FracCalcTestCheckpoint3
     		parseOfSecond[0] = Integer.parseInt(secondOperand.substring(0,secondOperand.indexOf("_")));
     		parseOfSecond[1] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("_")+1,secondOperand.indexOf("/")));
     		parseOfSecond[2] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("/")+1));
-    	}else if(secondOperand.indexOf("/")>0){
+    	}else if(secondOperand.indexOf("/")>0&&firstOperand.indexOf("_")<0){
 
     		//improperFraction
     		parseOfSecond[0] = 0;
@@ -159,9 +158,15 @@ public class FracCalcTestCheckpoint3
     	int denominator	= denominatorOne*denominatorTwo;
     	
     	
+    	if(denominator == 1){
+    		answer = "" + (numerator/denominator);
+    	}else if(numerator == 0){
+    		answer = "0";
     	
-    	int gcf = Calculate.gcf(numerator, denominator);
-    	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
+    	}else{
+    		int gcf = Calculate.gcf(numerator, denominator);
+    		answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
+    	}
     	
     	return answer;
     	
@@ -176,10 +181,15 @@ public class FracCalcTestCheckpoint3
     	
     	int numerator = numeratorOne*denominatorTwo-numeratorTwo*denominatorOne;
     	int denominator =  denominatorOne*denominatorTwo;
+    	if(denominator == 1){
+    		answer = "" + (numerator/denominator);
+    	}else if(numerator == 0){
+    		answer = "0";
     	
-    	int gcf = Calculate.gcf(numerator, denominator);
-    	
-    	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
+    	}else{
+    		int gcf = Calculate.gcf(numerator, denominator);
+    		answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
+    	}
     	return answer;
     }
     
@@ -192,18 +202,16 @@ public class FracCalcTestCheckpoint3
         
         int numerator = numeratorOne*numeratorTwo;
         int denominator = denominatorOne*denominatorTwo;
-        int gcf;
-        if(numerator!=0){
-        	gcf = Calculate.gcf(Calculate.absValue(numerator), denominator);
-        }else{
-        	//gcf cannot be 0;
-        	gcf = 1;
-        }
-        if(Calculate.absValue(numerator)%denominator==0){
-        	answer = Integer.toString(numerator/denominator);
-        }else{
-        	answer = Calculate.toMixedNum(numerator, denominator);
-        }
+        if(denominator == 1){
+    		answer = "" + (numerator/denominator);
+    	}else if(numerator == 0){
+    		answer = "0";
+    	
+    	}else{
+    		
+    		int gcf = Calculate.gcf(numerator, denominator);
+    		answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
+    	}
         return answer;
     }
     
@@ -216,13 +224,16 @@ public class FracCalcTestCheckpoint3
     	
     	int numerator = numeratorOne*denominatorTwo;
     	int denominator = numeratorTwo*denominatorOne;
-    	int gcf;
-        if(numerator!=0){
-        	gcf = Calculate.gcf(numerator, denominator);
-        }else{
-        	gcf = 1;
-        }
-    	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
+    	if(denominator == 1){
+    		answer = "" + (numerator/denominator);
+    	}else if(numerator == 0){
+    		answer = "0";
+    	
+    	}else{
+    		int gcf = Calculate.gcf(numerator, denominator);
+    		answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
+    	}
+    	
     	return answer;
     }
     
