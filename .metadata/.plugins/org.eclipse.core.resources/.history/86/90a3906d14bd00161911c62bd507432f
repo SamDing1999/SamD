@@ -194,15 +194,15 @@ public class FracCalcTestCheckpoint3
         int denominator = denominatorOne*denominatorTwo;
         int gcf;
         if(numerator!=0){
-        	gcf = Calculate.gcf(Calculate.absValue(numerator), denominator);
+        	gcf = Calculate.gcf(numerator, denominator);
         }else{
         	//gcf cannot be 0;
         	gcf = 1;
         }
-        if(Calculate.absValue(numerator)%denominator==0){
+        if(numerator%denominator==0){
         	answer = Integer.toString(numerator/denominator);
         }else{
-        	answer = Calculate.toMixedNum(numerator, denominator);
+        	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
         }
         return answer;
     }

@@ -34,8 +34,8 @@ public class FracCalcTestCheckpoint3
     @Test public void testCheckpoint3_DivisionCombined3() {FracCalcTestALL.assertForEarlyCheckpoints(null, null, "6_661/5520", FracCalc.produceAnswer("-38_3/72 / -4_82/37"));}
 
     public static void main(String[] args){
-    	//int s = Calculate.gcf(-24,3);
-    	//System.out.println(Calculate.toMixedNum(-24/s,3/s));
+    	int s = Calculate.gcf(-24,3);
+    	System.out.println("" + (-8%1));
     	Scanner userInput = new Scanner(System.in);
     	System.out.println("Enter your operation.");
     	String expression = userInput.nextLine();
@@ -194,16 +194,11 @@ public class FracCalcTestCheckpoint3
         int denominator = denominatorOne*denominatorTwo;
         int gcf;
         if(numerator!=0){
-        	gcf = Calculate.gcf(Calculate.absValue(numerator), denominator);
+        	gcf = Calculate.gcf(numerator, denominator);
         }else{
-        	//gcf cannot be 0;
         	gcf = 1;
         }
-        if(Calculate.absValue(numerator)%denominator==0){
-        	answer = Integer.toString(numerator/denominator);
-        }else{
-        	answer = Calculate.toMixedNum(numerator, denominator);
-        }
+    	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
         return answer;
     }
     
