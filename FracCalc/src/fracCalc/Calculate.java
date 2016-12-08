@@ -75,19 +75,20 @@ public class Calculate {
 	
 	/*A method that converts an improper fraction(with its pieces provided separately
 	in the order numerator then denominator) into a mixed number*/
-	public static String toMixedNum(int numerator,int denom){
-		String answer;
-		if(denom == 0){
-			answer = "Undefined";
-		}else if(numerator == 0){
-			answer = ("0");
-		}else if(numerator%denom == 0){
-			answer = (""+numerator/denom);
-		}else{
-			answer = ((numerator-(numerator%denom))/denom+"_"+(numerator%denom)+"/"+denom);
+		public static String toMixedNum(int numerator,int denom){
+			String answer;
+			if(denom == 0){
+				answer = "Undefined";
+			}else if(numerator == 0){
+				answer = ("0");
+			}else if(numerator%denom == 0){
+				answer = (""+numerator/denom);
+			}else{
+					answer = (numerator-numerator%denom)/denom+"_"+Calculate.absValue(numerator%denom)+"/"+denom;
+				
+			}
+			return answer;
 		}
-		return answer;
-	}
 	
 	/*A method that converts a binomial multiplication of the form(ax + b)(cx + d) into
 	 a quadratic equation of the form (ax^x + bx + c)*/
@@ -116,8 +117,8 @@ public class Calculate {
 	}
 	
 	//A method that returns the absolute value of the number passed
-	public static double absValue(double number){
-		double answer = 0;
+	public static int absValue(int number){
+		int answer = 0;
 		if(number<0){
 			answer = (-1)*number;
 		}else{
@@ -243,7 +244,8 @@ public class Calculate {
 				num2 = num3%num2;
 		    }
 		}
-		return (int)Calculate.absValue(num1);
+		int answer = Calculate.absValue(num1);
+		return answer;
 	}
 	
 	/*A method that returns an approximation of the square root of the value passed, 

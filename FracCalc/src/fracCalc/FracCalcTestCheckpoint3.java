@@ -34,7 +34,8 @@ public class FracCalcTestCheckpoint3
     @Test public void testCheckpoint3_DivisionCombined3() {FracCalcTestALL.assertForEarlyCheckpoints(null, null, "6_661/5520", FracCalc.produceAnswer("-38_3/72 / -4_82/37"));}
 
     public static void main(String[] args){
-    
+    	int s = Calculate.gcf(-20, 16);
+    	System.out.println(Calculate.toMixedNum(-20/s, 16/s));
     	Scanner userInput = new Scanner(System.in);
     	System.out.println("Enter your operation.");
     	String expression = userInput.nextLine();
@@ -88,27 +89,24 @@ public class FracCalcTestCheckpoint3
     //checkpoint 3:
     public static int[] parseOperand(String firstOperand, String secondOperand){
     	int[] parseOfTwoOperands = new int[4];
+    	
     	//firstOperand
     	int[] parseOfFirst = new int[3];
-    	
-    
-    	
-    	
     	if(firstOperand.indexOf("_")>0){
     		//mixed fraction
     		parseOfFirst[0] = Integer.parseInt(firstOperand.substring(0,firstOperand.indexOf("_")));
     		parseOfFirst[1] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("_")+1,firstOperand.indexOf("/")));
     		parseOfFirst[2] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("/")+1));
-    	}else if(firstOperand.indexOf("/")<0){
-    		//integers
-    		parseOfFirst[0] = Integer.parseInt(firstOperand);
-    		parseOfFirst[1] = 0;
-    	    parseOfFirst[2] = 1;
-    	}else{
+    	}else if(firstOperand.indexOf("/")>0){
     		//improperFraction
     		parseOfFirst[0] = 0;
     		parseOfFirst[1] = Integer.parseInt(firstOperand.substring(0,firstOperand.indexOf("/")));
     		parseOfFirst[2] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("/")+1));
+    	}else{
+    		//integers
+    		parseOfFirst[0] = Integer.parseInt(firstOperand);
+    		parseOfFirst[1] = 0;
+    	    parseOfFirst[2] = 1;
     	}
     	if(parseOfFirst[0] >= 0){
     		parseOfTwoOperands[0] = (parseOfFirst[0]*parseOfFirst[2]) + parseOfFirst[1];
@@ -116,24 +114,25 @@ public class FracCalcTestCheckpoint3
     		parseOfTwoOperands[0] = (parseOfFirst[0]*parseOfFirst[2]) - parseOfFirst[1];    	
     	}
     	parseOfTwoOperands[1] = parseOfFirst[2];
+    	
     	//secondOperand
-
     	int[] parseOfSecond = new int[3];
-    	if(firstOperand.indexOf("_")>0){
+    	if(secondOperand.indexOf("_")>0){
     		//mixed fraction
     		parseOfSecond[0] = Integer.parseInt(secondOperand.substring(0,secondOperand.indexOf("_")));
     		parseOfSecond[1] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("_")+1,secondOperand.indexOf("/")));
     		parseOfSecond[2] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("/")+1));
-    	}else if(firstOperand.indexOf("/")<0){
-    		//integers
-    		parseOfSecond[0] = Integer.parseInt(secondOperand);
-    		parseOfSecond[1] = 0;
-    		parseOfSecond[2] = 1;
-    	}else{
+    	}else if(secondOperand.indexOf("/")>0){
+
     		//improperFraction
     		parseOfSecond[0] = 0;
     		parseOfSecond[1] = Integer.parseInt(secondOperand.substring(0,secondOperand.indexOf("/")));
     		parseOfSecond[2] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("/")+1));
+    	}else{
+    		//integers
+    		parseOfSecond[0] = Integer.parseInt(secondOperand);
+    		parseOfSecond[1] = 0;
+    		parseOfSecond[2] = 1;
     	}
     	
     	if(parseOfSecond[0]>=0){
@@ -179,6 +178,7 @@ public class FracCalcTestCheckpoint3
     	int denominator =  denominatorOne*denominatorTwo;
     	
     	int gcf = Calculate.gcf(numerator, denominator);
+    	
     	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
     	return answer;
     }
@@ -190,9 +190,11 @@ public class FracCalcTestCheckpoint3
     	int numeratorTwo = parseOfTwoOperands[2];
     	int denominatorTwo = parseOfTwoOperands[3];
         
-        answer = Calculate.toMixedNum(numeratorOne*numeratorTwo,denominatorOne*denominatorTwo);
+        int numerator = numeratorOne*numeratorTwo;
+        int denominator = denominatorOne*denominatorTwo;
         
-        
+        int gcf = Calculate.gcf(numerator, denominator);
+    	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
         return answer;
     }
     
@@ -203,11 +205,14 @@ public class FracCalcTestCheckpoint3
     	int numeratorTwo = parseOfTwoOperands[2];
     	int denominatorTwo = parseOfTwoOperands[3];
     	
-    	answer = Calculate.toMixedNum(numeratorOne*denominatorTwo, numeratorTwo*denominatorOne);
+    	int numerator = numeratorOne*denominatorTwo;
+    	int denominator = numeratorTwo*denominatorOne;
     	
-  
+    	int gcf = Calculate.gcf(numerator, denominator);
+    	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
     	return answer;
     }
+    
     
     
     
