@@ -1,196 +1,196 @@
-package fracCalc;
 
+/**
+ * 
+ * @author Sam Ding
+ * Date : 12/08/16
+ * 
+ * Goal : The objective of this assignment is to create a calculator to compute arithmetic operations 
+ * between integers and/or fractions and output the result as a reduced mixed fraction.
+ * 
+ * 
+ * 
+*/
+package fracCalc;
+import java.util.Arrays;
 import java.util.Scanner;
 
+
 public class FracCalc {
+	public static void main (String[] args){
+		System.out.println("Please put in an expression");
+		Scanner input  = new Scanner(System.in);
+		String userInput = input.nextLine();
+		while (userInput.equals("quit")!= true){
+			String answer = produceAnswer(userInput);
+			System.out.println(answer);
+			System.out.println("Next One: ");
+			userInput = input.nextLine();
+		}
+		System.out.println("Please restart!!!");
+	}
 
-    public static void main(String[] args) 
-    {
-        // TODO: Read the input from the user and call produceAnswer with an equation
-    	Scanner userInput = new Scanner(System.in);
-    	System.out.println("Enter your operation.");
-    	String expression = userInput.nextLine();
-    	while (expression!=("quit")){
-    		
-    		String answer = produceAnswer(expression);
-    		System.out.println(answer);
-    		System.out.println("Enter your operation.");
-    		expression = userInput.nextLine();
-    	}
-    }
-    
-    // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
-    // This function takes a String 'input' and produces the result
-    //
-    // input is a fraction string that needs to be evaluated.  For your program, this will be the user input.
-    //      e.g. input ==> "1/2 + 3/4"
-    //        
-    // The function should return the result of the fraction after it has been calculated
-    //      e.g. return ==> "1_1/4"
-    public static String produceAnswer(String input)
-    { 
-        // TODO: Implement this function to produce the solution to the input
-    	String firstOperand = new String();
-		String operator = new String();
-		String secondOperand = new String();
-		int firstSpace = input.indexOf(" ");
-    	int secondSpace = input.indexOf(" ", firstSpace+1);
-    	operator = input.substring(firstSpace+1, secondSpace);
-    	firstOperand = input.substring(0, firstSpace);
-    	secondOperand = input.substring(secondSpace+1, input.length());
-    	
-    	String answer;
-    
 
-	
-		if(operator.equals("+")){
-			//addition
-			answer = addFrac(parseOperand(firstOperand, secondOperand));
+	public static String produceAnswer(String Input){
+		String[] splitBySpaces = Input.split(" ");
+		String operator= splitBySpaces[1];
+		int[] firstOperand= parseOperand(splitBySpaces[0]);//store the first  operand
+		int[] secondOperand= parseOperand(splitBySpaces[2]);//store the second operand
+		int[] firstImproperOperand=toImproperFrac(firstOperand);//convert the first operand to an improper fraction
+		int[] secondImproperOperand=toImproperFrac(secondOperand);//convert the second operand to an improper fraction
+		String answer;
+		if ( operator.equals("+") ){
+			answer = toMixedFrac(addFrac(firstImproperOperand,secondImproperOperand));
 		}else if(operator.equals("-")){
-			//subtraction
-			answer = subtractFrac(parseOperand(firstOperand, secondOperand));
+			answer = toMixedFrac(subtractFrac(firstImproperOperand,secondImproperOperand));
 		}else if(operator.equals("*")){
-			//multiplication
-			answer = multiplyFrac(parseOperand(firstOperand, secondOperand));
+			answer = toMixedFrac(multiplyFrac(firstImproperOperand,secondImproperOperand));
 		}else if(operator.equals("/")){
-			//division
-			answer = divideFrac(parseOperand(firstOperand, secondOperand));
+			answer = toMixedFrac(divideFrac(firstImproperOperand,secondImproperOperand));	
 		}else{
 			answer = "Please check your expression";
 		}
-		
-	
-	    return answer;
-}
 
-   
-    
-    public static int[] parseOperand(String firstOperand, String secondOperand){
-    	int[] parseOfTwoOperands = new int[4];
-    	
-    	//firstOperand
-    	int[] parseOfFirst = new int[3];
-    	if(firstOperand.indexOf("_")>0){
-    		//mixed fraction
-    		parseOfFirst[0] = Integer.parseInt(firstOperand.substring(0,firstOperand.indexOf("_")));
-    		parseOfFirst[1] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("_")+1,firstOperand.indexOf("/")));
-    		parseOfFirst[2] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("/")+1));
-    	}else if(firstOperand.indexOf("/")>0){
-    		//improperFraction
-    		parseOfFirst[0] = 0;
-    		parseOfFirst[1] = Integer.parseInt(firstOperand.substring(0,firstOperand.indexOf("/")));
-    		parseOfFirst[2] = Integer.parseInt(firstOperand.substring(firstOperand.indexOf("/")+1));
-    	}else{
-    		//integers
-    		parseOfFirst[0] = Integer.parseInt(firstOperand);
-    		parseOfFirst[1] = 0;
-    	    parseOfFirst[2] = 1;
-    	}
-    	if(parseOfFirst[0] >= 0){
-    		parseOfTwoOperands[0] = (parseOfFirst[0]*parseOfFirst[2]) + parseOfFirst[1];
-    	}else{
-    		parseOfTwoOperands[0] = (parseOfFirst[0]*parseOfFirst[2]) - parseOfFirst[1];    	
-    	}
-    	parseOfTwoOperands[1] = parseOfFirst[2];
-    	
-    	//secondOperand
-    	int[] parseOfSecond = new int[3];
-    	if(secondOperand.indexOf("_")>0){
-    		//mixed fraction
-    		parseOfSecond[0] = Integer.parseInt(secondOperand.substring(0,secondOperand.indexOf("_")));
-    		parseOfSecond[1] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("_")+1,secondOperand.indexOf("/")));
-    		parseOfSecond[2] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("/")+1));
-    	}else if(secondOperand.indexOf("/")>0){
-    		
-    		//improperFraction
-    		parseOfSecond[0] = 0;
-    		parseOfSecond[1] = Integer.parseInt(secondOperand.substring(0,secondOperand.indexOf("/")));
-    		parseOfSecond[2] = Integer.parseInt(secondOperand.substring(secondOperand.indexOf("/")+1));
-    	}else{
-    		//integers
-    		parseOfSecond[0] = Integer.parseInt(secondOperand);
-    		parseOfSecond[1] = 0;
-    		parseOfSecond[2] = 1;
-    		
-    	}
-    	
-    	if(parseOfSecond[0]>=0){
-    		parseOfTwoOperands[2] = (parseOfSecond[0]*parseOfSecond[2])+ parseOfSecond[1];
-    	}else{
-    		parseOfTwoOperands[2] = (parseOfSecond[0]*parseOfSecond[2])- parseOfSecond[1];
-    	}
-    	parseOfTwoOperands[3] = parseOfSecond[2];
-    	
-    	return parseOfTwoOperands;
-    	
-    }
-    
-    
-    
-    public static String addFrac(int[] parseOfTwoOperands){
-    	String answer;
-    	int numeratorOne = parseOfTwoOperands[0];
-    	int denominatorOne = parseOfTwoOperands[1];
-    	int numeratorTwo = parseOfTwoOperands[2];
-    	int denominatorTwo = parseOfTwoOperands[3];
-    	
-    	int numerator = numeratorOne*denominatorTwo+numeratorTwo*denominatorOne;
-    	int denominator	= denominatorOne*denominatorTwo;
-    	
-    	
-    	
-    	int gcf = Calculate.gcf(numerator, denominator);
-    	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
-    	
-    	return answer;
-    	
-    }
-    
-    public static String subtractFrac(int[] parseOfTwoOperands){
-    	String answer;
-    	int numeratorOne = parseOfTwoOperands[0];
-    	int denominatorOne = parseOfTwoOperands[1];
-    	int numeratorTwo = parseOfTwoOperands[2];
-    	int denominatorTwo = parseOfTwoOperands[3];
-    	
-    	int numerator = numeratorOne*denominatorTwo-numeratorTwo*denominatorOne;
-    	int denominator =  denominatorOne*denominatorTwo;
-    	
-    	int gcf = Calculate.gcf(numerator, denominator);
-    	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
-    	return answer;
-    }
-    
-    public static String multiplyFrac(int[] parseOfTwoOperands){
-    	String answer;
-    	int numeratorOne = parseOfTwoOperands[0];
-    	int denominatorOne = parseOfTwoOperands[1];
-    	int numeratorTwo = parseOfTwoOperands[2];
-    	int denominatorTwo = parseOfTwoOperands[3];
-        
-        int numerator = numeratorOne*numeratorTwo;
-        int denominator = denominatorOne*denominatorTwo;
-        
-        int gcf = Calculate.gcf(numerator, denominator);
-    	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
-        return answer;
-    }
-    
-    public static String divideFrac(int[] parseOfTwoOperands){
-    	String answer;
-    	int numeratorOne = parseOfTwoOperands[0];
-    	int denominatorOne = parseOfTwoOperands[1];
-    	int numeratorTwo = parseOfTwoOperands[2];
-    	int denominatorTwo = parseOfTwoOperands[3];
-    	
-    	int numerator = numeratorOne*denominatorTwo;
-    	int denominator = numeratorTwo*denominatorOne;
-    	
-    	int gcf = Calculate.gcf(numerator, denominator);
-    	answer = Calculate.toMixedNum(numerator/gcf, denominator/gcf);
-    	return answer;
-    }
-    
+		return answer;
+	}
+	
+	public static int[] parseOperand(String operand){
+		String[] partsOfOperand=new String [3];
+		if (operand.indexOf("_")<0 && operand.indexOf("/")<0) {
+			//integers
+			partsOfOperand[0] = operand;
+			partsOfOperand[1] = "0";
+			partsOfOperand[2] = "1";
+		}else if(operand.indexOf("_")<0 && operand.indexOf("/")>0 ){
+			//improper fraction
+			partsOfOperand[0] = "0";
+			partsOfOperand[1] = operand.substring(0, operand.indexOf("/"));
+			partsOfOperand[2] = operand.substring(operand.indexOf("/")+1);
+		}else if(operand.indexOf("_")>0 && operand.indexOf("/")>0){
+			//Mixed fraction
+			partsOfOperand[0] = operand.substring(0,operand.indexOf("_"));
+			partsOfOperand[1]=operand.substring(operand.indexOf("_")+1,operand.indexOf("/"));
+			partsOfOperand[2] = operand.substring(operand.indexOf("/")+1);
+		}
+			int[] parseOfOperand=new int [3];
+			for(int i = 0; i < 3; i++){
+				parseOfOperand[i]= Integer.parseInt(partsOfOperand[i]);
+			}
+		return parseOfOperand;
+	}
+
+
+
+	public static int[] toImproperFrac (int[] operand){
+		int[] improperFrac=new int [2];
+		if(operand[0]<0){
+			//negative fraction
+			improperFrac[0] = (operand[0]*operand[2])+(operand[1]*-1)	;
+			improperFrac[1] = operand[2];
+		}else{
+			improperFrac[0] =((operand[0]*operand[2])+operand[1]);
+			improperFrac[1]=operand[2];
+		}
+		return improperFrac;
+	}
+				
+	public static String toMixedFrac(int[] answer){
+		
+		String reducedAnswer;
+		int gcf = gcf(answer[0],answer[1]);
+		if(gcf!=1){
+			answer[0] = answer[0]/gcf;//answer[0] is the numerator of the answer
+			answer[1] = answer[1]/gcf;//answer[1] is the denominator of the answer
+		}
+		if(answer[1]<0){
+			answer[1]=Calculate.absValue(answer[1]);
+			answer[0]=answer[0]*-1;
+		}
+		int coefficient = answer[0]/answer[1];
+	  	int remainder = answer[0] % answer[1];
+	 	if (coefficient<0){
+	  		if(remainder==0 && answer[1]==1){
+	  			reducedAnswer = (Integer.toString(coefficient));
+	 		}else if(remainder==0 && answer[1]==-1){
+	 			reducedAnswer = (Integer.toString(coefficient));
+	  		}else{
+		  		 reducedAnswer = coefficient + "_" + Calculate.absValue(remainder) + "/" + Calculate.absValue(answer[1]);
+			}
+		}else if(remainder==0){
+			reducedAnswer = coefficient+"";		
+		}else if(coefficient==0){			
+			if(remainder<0 && answer[1]<0){
+				int newNum = remainder*-1;
+		  		int newDenom = answer[1]*-1;
+		  		reducedAnswer = newNum + "/" + newDenom;
+			}else{
+				reducedAnswer = remainder + "/" + answer[1];
+	  		}
+		}else if(remainder<0 && answer[1]<0){
+ 	    	int numerator = remainder*-1;
+ 			int denominator = answer[1]*-1;
+ 			reducedAnswer = coefficient + "_" + numerator + "/" + denominator;
+		}else{
+			reducedAnswer = coefficient + "_" + remainder + "/" + answer[1];
+		}
+					    		
+	   	return reducedAnswer;
+	}	
+	
+	//A method that finds the greatest common factor of two integers
+	/**
+	 * @param integer
+	 * @return integer
+	 */
+	public static int gcf(int a, int b){
+		while(a!=0 && b!=0){
+			int c = b;
+			b = a%b;
+			a = c;
+		}
+		return Calculate.absValue(a+b);
+	}
+				
+	public static int[] addFrac(int[] firstOperand, int[] secondOperand){ 
+		int[] answer =new int[2];
+		int firstNumerator = firstOperand[0];
+		int firstDenominator = firstOperand[1];
+		int secondNumerator = secondOperand[0];
+		int secondDenominator = secondOperand[1];
+		answer[0] = secondDenominator * firstNumerator + firstDenominator * secondNumerator;
+		answer[1] = firstDenominator * secondDenominator;
+		return answer;
+	}
+	
+	public static int[] subtractFrac(int[] firstOperand, int[] secondOperand){ 
+		int[] answer =new int[2];
+		int firstNumerator = firstOperand[0];
+		int firstDenominator = firstOperand[1];
+		int secondNumerator = secondOperand[0];
+		int secondDenominator = secondOperand[1];
+		answer[0] = secondDenominator * firstNumerator - firstDenominator * secondNumerator;
+		answer[1] = firstDenominator * secondDenominator;
+		return answer;
+	}
+	
+	public static int[] multiplyFrac(int[] firstOperand, int[] secondOperand){ 
+		int[] answer =new int[2];
+		int firstNumerator = firstOperand[0];
+		int firstDenominator = firstOperand[1];
+		int secondNumerator = secondOperand[0];
+		int secondDenominator = secondOperand[1];
+		answer[0] = firstNumerator * secondNumerator;
+		answer[1] = firstDenominator * secondDenominator;
+		return answer;
+	}
+	
+	public static int[] divideFrac(int[] firstOperand, int[] secondOperand){ 
+		int[] answer =new int[2];
+		int firstNumerator = firstOperand[0];
+		int firstDenominator = firstOperand[1];
+		int secondNumerator = secondOperand[0];
+		int secondDenominator = secondOperand[1];
+		answer[0] =firstNumerator * secondDenominator;
+		answer[1] = firstDenominator * secondNumerator;
+		return answer;
+	}
 }
-    
-    
